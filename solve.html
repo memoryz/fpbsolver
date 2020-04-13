@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solve by Hand</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">FPB Solver</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Game Info</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="solve.html">Solve by Hand <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <p></p>
+    <div class="container">
+        <p class="lead">
+            Solving FPB puzzle by hand is super fun!
+        </p>
+        <p>Here are some common patterns and tips:</p>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                Guesses
+                            </th>
+                            <th>
+                                Response
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                1234
+                            </td>
+                            <td>
+                                F
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                7254
+                            </td>
+                            <td>
+                                PP
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    In the first row, if <b>2</b> is Fermi, then <b>2</b> would also be Fermi in the second row. But the second row does not have a Fermi, so <b>2</b> cannot be Fermi in either row. The first row only has one Fermi, so <b>2</b> must be a Bagel.
+                </p>
+                <p>
+                    By the same reason, <b>4</b> must be a Bagel.
+                </p>
+                <p>
+                    From the second row, since both <b>2</b> and <b>4</b> are Bagels, then <b>7</b> and <b>5</b> must both be Picos. That tells us two things:
+                    <ol>
+                        <li>Both <b>7</b> and <b>5</b> are in the secret number, so only two other numbers are unknown.</li>
+                        <li><b>7</b> is not the first digit. <b>5</b> is not the third digit.</li>
+                    </ol>
+                </p>
+            </li>
+            <li class="list-group-item">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                Guesses
+                            </th>
+                            <th>
+                                Response
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                XX36
+                            </td>
+                            <td>
+                                P
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                7936
+                            </td>
+                            <td>
+                                PP
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                7XXX
+                            </td>
+                            <td>
+                                F
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    From the second and third rows, we know <b>7</b> must be a Bagel.
+                </p>
+                <p>
+                    From the second row, since <b>7</b> is a Bagel, there must be another Bagel in <b>9</b>, <b>3</b> and <b>6</b>.
+                </p>
+                <p>
+                    Suppose <b>3</b> and <b>6</b> are both Picos, then they are also Picos in the first row. But first row only has one Pico. So <b>3</b> and <b>6</b> cannot both be Picos. So <b>9</b> must be a Pico, and the other Pico is in <b>3</b> and <b>6</b>.
+                </p>
+                <p>
+                    From the first row, since there is one Pico in <b>3</b> and <b>6</b>, then the two <b>X</b> must be Bagel.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                Guesses
+                            </th>
+                            <th>
+                                Response
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                ...
+            </li>
+        </ul>
+    </div>
+    <p/>
+</body>
+
+</html>
