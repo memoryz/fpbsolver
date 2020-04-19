@@ -45,6 +45,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="solve.html">Solve by Hand <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/memoryz/fpbsolver" target="_blank">Source Code</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -53,7 +56,7 @@
         <p class="lead">
             Solving FPB puzzle by hand is super fun!
         </p>
-        <p>Here are some common patterns and tips:</p>
+        <p>Here are some examples:</p>
         <ul class="list-group">
             <li class="list-group-item">
                 <table class="table table-bordered">
@@ -165,10 +168,53 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <tr>
+                            <td>
+                                1234
+                            </td>
+                            <td>
+                                F
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                6259
+                            </td>
+                            <td>
+                                FPP
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                7296
+                            </td>
+                            <td>
+                                FFPP
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                ...
+                <p>
+                    From the third row, we know <b>2</b> cannot be Bagel, so it must be a Fermi in the first row, so it must be a Fermi in all three rows.
+                </p>
+                <p>
+                    From the first row, we then know <b>1</b>, <b>3</b>, <b>4</b> are all Bagels.
+                </p>
+                <p>
+                    From the third row, we know both <b>6</b> and <b>9</b> must be in the combination, so in the second row they both must be Peco, as the <b>2</b> has already taken the Fermi.
+                </p>
+                <p>
+                    Now we know <b>2</b> is the second digit. <b>6</b> cannot be the first digit, and <b>9</b> cannot be the last digit. 
+                </p>
+                <p>
+                    So the first digit is either <b>7</b> or <b>9</b>, the third digit can be <b>6</b>, <b>7</b> or <b>9</b>, and the fourth digit is either <b>6</b> or <b>7</b>.
+                </p>
+                <p>
+                    If the first digit is <b>7</b>, then the fourth digit cannot be <b>7</b>, so it must be <b>6</b>, but that would cause three Fermi's in the third row. So the first digit must be <b>9</b>.
+                </p>
+                <p>
+                    So in the third row, both <b>7</b> and <b>9</b> must be Peco's, and that leaves <b>6</b> a Fermi, and the solution is <b>9276</b>
+                </p>
             </li>
         </ul>
     </div>
