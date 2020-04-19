@@ -2,6 +2,7 @@ package FermiPicoBagel.webapp
 
 import scala.language.postfixOps
 import scala.util.Random
+import scala.math.Ordering.Double.TotalOrdering
 
 class Solver(nDigits: Int, allowDuplicates: Boolean, allowZero: Boolean, allowLeadingZero: Boolean) {
 
@@ -109,13 +110,25 @@ object Solver {
     val bestOfWorst = allResponse.groupBy(_._1).map {
       case (guess, responseGroup) =>
         // group by response, and get each subgroup's size
-        val cost = responseGroup
+        val sizePerResponse = responseGroup
           .groupBy(_._3)
-          .map(_._2.size)
+          .map {
+            case (response, subgroup) => (response, subgroup.size)
+          }
+
+        val cost = sizePerResponse.values
           .map(s => s * log2(s))
           .sum
-        (guess, cost)
+
+        val bestCase = sizePerResponse.view.filterKeys(r => !responseMatch(r, "FFFF"))
+          .minByOption(_._2)
+
+        (guess, cost, bestCase)
     }.minBy(_._2)
+
+    if (bestOfWorst._3.isDefined) {
+      Dom.debug(s"Best case response for hint[${bestOfWorst._1}]: ${bestOfWorst._3}")
+    }
 
     bestOfWorst._1
   }

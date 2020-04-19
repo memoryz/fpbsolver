@@ -1,7 +1,7 @@
 package FermiPicoBagel.webapp
 
 import FermiPicoBagel.webapp.Solver._
-import org.scalajs.dom.{Event, document}
+import org.scalajs.dom.{Event, document, console}
 import org.scalajs.dom.html._
 
 import scala.scalajs.js.annotation.JSExportTopLevel
@@ -141,5 +141,9 @@ object Dom{
     if (element.valueAsNumber.toInt > element.max.toInt) {
       element.value = element.max
     }
+  }
+
+  def debug(message: => Any, optionalParams: Any*): Unit = {
+    console.debug(message, optionalParams)
   }
 }

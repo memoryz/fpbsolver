@@ -1356,8 +1356,7 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
       result = result.updated__O__O__sci_HashMap(k, v.result__O())
     };
     const this$7 = result;
-    $m_sci_HashMap$();
-    const b = new $c_sci_HashMapBuilder();
+    const b = $m_sci_Iterable$().newBuilder__scm_Builder();
     const it$1 = this$7.iterator__sc_Iterator();
     while (it$1.hasNext__Z()) {
       const arg1$6 = it$1.next__O();
@@ -1373,11 +1372,11 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
         const elem$1 = it$2.next__O();
         const x$10 = $as_T3(elem$1);
         const key$1 = $as_T(x$10.T3__f__3);
-        const bldr$1 = $as_scm_Builder(m$1.getOrElseUpdate__O__F0__O(key$1, new $c_sjsr_AnonFunction0(((this$9) => (() => this$9.newSpecificBuilder__scm_Builder()))(responseGroup))));
+        const bldr$1 = $as_scm_Builder(m$1.getOrElseUpdate__O__F0__O(key$1, new $c_sjsr_AnonFunction0(((this$8) => (() => this$8.newSpecificBuilder__scm_Builder()))(responseGroup))));
         bldr$1.addOne__O__scm_Growable(elem$1)
       };
-      const this$10 = $m_sci_HashMap$();
-      let result$1 = this$10.sci_HashMap$__f_EmptyMap;
+      const this$9 = $m_sci_HashMap$();
+      let result$1 = this$9.sci_HashMap$__f_EmptyMap;
       const mapIt$1 = m$1.iterator__sc_Iterator();
       while (mapIt$1.hasNext__Z()) {
         const x1$1 = $as_T2(mapIt$1.next__O());
@@ -1388,35 +1387,92 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
         const v$1 = $as_scm_Builder(x1$1.T2__f__2);
         result$1 = result$1.updated__O__O__sci_HashMap(k$1, v$1.result__O())
       };
-      const this$11 = result$1;
-      const b$1 = $m_sci_Iterable$().newBuilder__scm_Builder();
-      const it$3 = this$11.iterator__sc_Iterator();
+      const this$10 = result$1;
+      $m_sci_HashMap$();
+      const b$1 = new $c_sci_HashMapBuilder();
+      const it$3 = this$10.iterator__sc_Iterator();
       while (it$3.hasNext__Z()) {
         const arg1$7 = it$3.next__O();
-        const x$11 = $as_T2(arg1$7);
-        const this$12 = $as_sc_SeqOps(x$11.T2__f__2);
-        const elem$2 = this$12.length__I();
-        b$1.addOne__O__scm_Growable(elem$2)
+        const x0$4 = $as_T2(arg1$7);
+        if ((x0$4 === null)) {
+          throw new $c_s_MatchError(x0$4)
+        };
+        const response$2 = $as_T(x0$4.T2__f__1);
+        const subgroup = $as_sci_List(x0$4.T2__f__2);
+        const _2 = subgroup.length__I();
+        $p_sci_HashMapBuilder__ensureUnaliased__V(b$1);
+        const h$3 = $m_sr_Statics$().anyHash__O__I(response$2);
+        const im = $m_sc_Hashing$().improve__I__I(h$3);
+        b$1.update__sci_MapNode__O__O__I__I__I__V(b$1.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, response$2, _2, h$3, im, 0)
       };
-      const cost = $uD($as_sc_IterableOnceOps($as_sc_IterableOps(b$1.result__O()).map__F1__O(new $c_sjsr_AnonFunction1(((this$3$1) => ((s$2) => {
+      const sizePerResponse = b$1.result__sci_HashMap();
+      const this$13 = new $c_sc_MapOps$$anon$1(sizePerResponse);
+      const f$3 = new $c_sjsr_AnonFunction1(((this$3$1) => ((s$2) => {
         const s = $uI(s$2);
-        const this$13 = $m_LFermiPicoBagel_webapp_Solver$().LFermiPicoBagel_webapp_Solver$__f_log2;
+        const this$12 = $m_LFermiPicoBagel_webapp_Solver$().LFermiPicoBagel_webapp_Solver$__f_log2;
         const v1 = s;
-        return (s * $uD(this$13.apply__O__O(v1)))
-      }))(this)))).sum__s_math_Numeric__O($m_s_math_Numeric$DoubleIsFractional$()));
-      $p_sci_HashMapBuilder__ensureUnaliased__V(b);
-      const h$3 = $m_sr_Statics$().anyHash__O__I(guess$2);
-      const im = $m_sc_Hashing$().improve__I__I(h$3);
-      b.update__sci_MapNode__O__O__I__I__I__V(b.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, guess$2, cost, h$3, im, 0)
+        return (s * $uD(this$12.apply__O__O(v1)))
+      }))(this));
+      const cost = $uD($as_sc_IterableOnceOps($f_sc_IterableOps__map__F1__O(this$13, f$3)).sum__s_math_Numeric__O($m_s_math_Numeric$DoubleIsFractional$()));
+      const this$14 = new $c_sc_MapView$Id(sizePerResponse);
+      const p = new $c_sjsr_AnonFunction1(((this$4$1) => ((r$2) => {
+        const r = $as_T(r$2);
+        return (!$m_LFermiPicoBagel_webapp_Solver$().FermiPicoBagel$webapp$Solver$$responseMatch__T__T__Z(r, "FFFF"))
+      }))(this));
+      const this$15 = new $c_sc_MapView$FilterKeys(this$14, p);
+      const cmp = $m_s_math_Ordering$Int$();
+      const this$16 = this$15.iterator__sc_Iterator();
+      let bestCase;
+      if ((!this$16.hasNext__Z())) {
+        bestCase = $m_s_None$()
+      } else {
+        const this$17 = this$15.iterator__sc_Iterator();
+        if ((!this$17.hasNext__Z())) {
+          throw $ct_jl_UnsupportedOperationException__T__(new $c_jl_UnsupportedOperationException(), "empty.minBy")
+        };
+        let elem$2 = null;
+        elem$2 = null;
+        let elem$3 = null;
+        elem$3 = null;
+        let elem$4 = false;
+        elem$4 = true;
+        const it$4 = this$15.iterator__sc_Iterator();
+        while (it$4.hasNext__Z()) {
+          const arg1$8 = it$4.next__O();
+          const x$11 = $as_T2(arg1$8);
+          const fx = $uI(x$11.T2__f__2);
+          let $$x1;
+          if (elem$4) {
+            $$x1 = true
+          } else {
+            const y = elem$2;
+            $$x1 = $f_s_math_Ordering__lt__O__O__Z(cmp, fx, y)
+          };
+          if ($$x1) {
+            elem$3 = arg1$8;
+            elem$2 = fx;
+            elem$4 = false
+          }
+        };
+        bestCase = new $c_s_Some(elem$3)
+      };
+      const elem$5 = new $c_T3(guess$2, cost, bestCase);
+      b.addOne__O__scm_Growable(elem$5)
     };
-    const this$14 = b.result__sci_HashMap();
-    const f$3 = new $c_sjsr_AnonFunction1(((this$6$1) => ((x$12$2) => {
-      const x$12 = $as_T2(x$12$2);
-      return $uD(x$12.T2__f__2)
+    const this$21 = $as_sc_IterableOnceOps(b.result__O());
+    const f$4 = new $c_sjsr_AnonFunction1(((this$6$1) => ((x$12$2) => {
+      const x$12 = $as_T3(x$12$2);
+      return $uD(x$12.T3__f__2)
     }))(this));
-    const cmp = $m_s_math_Ordering$DeprecatedDoubleOrdering$();
-    const bestOfWorst = $as_T2($f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O(this$14, f$3, cmp));
-    return $as_T(bestOfWorst.T2__f__1)
+    const cmp$1 = $m_s_math_Ordering$Double$TotalOrdering$();
+    const bestOfWorst = $as_T3($f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O(this$21, f$4, cmp$1));
+    const this$22 = $as_s_Option(bestOfWorst.T3__f__3);
+    if ((!this$22.isEmpty__Z())) {
+      const array = [];
+      const optionalParams = new $c_sjsr_WrappedVarArgs(array);
+      $m_Lorg_scalajs_dom_package$().console__Lorg_scalajs_dom_raw_Console().debug(((("Best case response for hint[" + bestOfWorst.T3__f__1) + "]: ") + bestOfWorst.T3__f__3), optionalParams)
+    };
+    return $as_T(bestOfWorst.T3__f__1)
   };
 }
 const $d_LFermiPicoBagel_webapp_Solver$ = new $TypeData().initClass({
@@ -2388,6 +2444,13 @@ const $p_Lorg_scalajs_dom_package$__document$lzycompute__Lorg_scalajs_dom_raw_HT
   };
   return $thiz.Lorg_scalajs_dom_package$__f_document
 });
+const $p_Lorg_scalajs_dom_package$__console$lzycompute__Lorg_scalajs_dom_raw_Console = (function($thiz) {
+  if (((134217728 & $thiz.Lorg_scalajs_dom_package$__f_bitmap$0) === 0)) {
+    $thiz.Lorg_scalajs_dom_package$__f_console = $thiz.window__Lorg_scalajs_dom_raw_Window().console;
+    $thiz.Lorg_scalajs_dom_package$__f_bitmap$0 = (134217728 | $thiz.Lorg_scalajs_dom_package$__f_bitmap$0)
+  };
+  return $thiz.Lorg_scalajs_dom_package$__f_console
+});
 class $c_Lorg_scalajs_dom_package$ extends $c_O {
   constructor() {
     super();
@@ -2426,6 +2489,9 @@ class $c_Lorg_scalajs_dom_package$ extends $c_O {
   };
   document__Lorg_scalajs_dom_raw_HTMLDocument() {
     return (((67108864 & this.Lorg_scalajs_dom_package$__f_bitmap$0) === 0) ? $p_Lorg_scalajs_dom_package$__document$lzycompute__Lorg_scalajs_dom_raw_HTMLDocument(this) : this.Lorg_scalajs_dom_package$__f_document)
+  };
+  console__Lorg_scalajs_dom_raw_Console() {
+    return (((134217728 & this.Lorg_scalajs_dom_package$__f_bitmap$0) === 0) ? $p_Lorg_scalajs_dom_package$__console$lzycompute__Lorg_scalajs_dom_raw_Console(this) : this.Lorg_scalajs_dom_package$__f_console)
   };
 }
 const $d_Lorg_scalajs_dom_package$ = new $TypeData().initClass({
@@ -10112,6 +10178,15 @@ class $c_s_Option extends $c_O {
     }
   };
 }
+function $as_s_Option(obj) {
+  return (((obj instanceof $c_s_Option) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.Option"))
+}
+function $isArrayOf_s_Option(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.s_Option)))
+}
+function $asArrayOf_s_Option(obj, depth) {
+  return (($isArrayOf_s_Option(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.Option;", depth))
+}
 class $c_s_Product$$anon$1 extends $c_sc_AbstractIterator {
   constructor(outer) {
     super();
@@ -10928,6 +11003,30 @@ function $isArrayOf_sc_LinearSeqOps(obj, depth) {
 function $asArrayOf_sc_LinearSeqOps(obj, depth) {
   return (($isArrayOf_sc_LinearSeqOps(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.collection.LinearSeqOps;", depth))
 }
+class $c_sc_MapOps$$anon$3 extends $c_sc_AbstractIterator {
+  constructor(outer) {
+    super();
+    this.sc_MapOps$$anon$3__f_iter = null;
+    this.sc_MapOps$$anon$3__f_iter = outer.iterator__sc_Iterator()
+  };
+  hasNext__Z() {
+    return this.sc_MapOps$$anon$3__f_iter.hasNext__Z()
+  };
+  next__O() {
+    return $as_T2(this.sc_MapOps$$anon$3__f_iter.next__O()).T2__f__2
+  };
+}
+const $d_sc_MapOps$$anon$3 = new $TypeData().initClass({
+  sc_MapOps$$anon$3: 0
+}, false, "scala.collection.MapOps$$anon$3", {
+  sc_MapOps$$anon$3: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_sc_MapOps$$anon$3.prototype.$classData = $d_sc_MapOps$$anon$3;
 const $p_sc_SeqOps$CombinationsItr__init__T3 = (function($thiz) {
   const this$1 = $m_scm_HashMap$();
   const elems = $m_sci_Nil$();
@@ -11883,15 +11982,11 @@ class $c_sci_Map$Map2$Map2Iterator extends $c_sc_AbstractIterator {
     let result;
     switch (x1) {
       case 0: {
-        const k = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1;
-        const v = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1;
-        result = new $c_T2(k, v);
+        result = this.nextResult__O__O__O(this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1);
         break
       }
       case 1: {
-        const k$1 = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2;
-        const v$1 = this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2;
-        result = new $c_T2(k$1, v$1);
+        result = this.nextResult__O__O__O(this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2$Map2Iterator__f_$outer.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2);
         break
       }
       default: {
@@ -11925,21 +12020,15 @@ class $c_sci_Map$Map3$Map3Iterator extends $c_sc_AbstractIterator {
     let result;
     switch (x1) {
       case 0: {
-        const k = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1;
-        const v = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1;
-        result = new $c_T2(k, v);
+        result = this.nextResult__O__O__O(this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1);
         break
       }
       case 1: {
-        const k$1 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2;
-        const v$1 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2;
-        result = new $c_T2(k$1, v$1);
+        result = this.nextResult__O__O__O(this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2);
         break
       }
       case 2: {
-        const k$2 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3;
-        const v$2 = this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3;
-        result = new $c_T2(k$2, v$2);
+        result = this.nextResult__O__O__O(this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3$Map3Iterator__f_$outer.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3);
         break
       }
       default: {
@@ -11973,27 +12062,19 @@ class $c_sci_Map$Map4$Map4Iterator extends $c_sc_AbstractIterator {
     let result;
     switch (x1) {
       case 0: {
-        const k = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1;
-        const v = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1;
-        result = new $c_T2(k, v);
+        result = this.nextResult__O__O__O(this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1, this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value1);
         break
       }
       case 1: {
-        const k$1 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2;
-        const v$1 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2;
-        result = new $c_T2(k$1, v$1);
+        result = this.nextResult__O__O__O(this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key2, this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value2);
         break
       }
       case 2: {
-        const k$2 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3;
-        const v$2 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3;
-        result = new $c_T2(k$2, v$2);
+        result = this.nextResult__O__O__O(this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key3, this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value3);
         break
       }
       case 3: {
-        const k$3 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4;
-        const v$3 = this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4;
-        result = new $c_T2(k$3, v$3);
+        result = this.nextResult__O__O__O(this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key4, this.sci_Map$Map4$Map4Iterator__f_$outer.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$value4);
         break
       }
       default: {
@@ -12134,6 +12215,67 @@ const $d_sci_MapKeyValueTupleIterator = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_sci_MapKeyValueTupleIterator.prototype.$classData = $d_sci_MapKeyValueTupleIterator;
+class $c_sci_MapValueIterator extends $c_sci_ChampBaseIterator {
+  constructor(rootNode) {
+    super();
+    $ct_sci_ChampBaseIterator__sci_Node__(this, rootNode)
+  };
+  iterator__sc_Iterator() {
+    return this
+  };
+  isEmpty__Z() {
+    return (!this.hasNext__Z())
+  };
+  concat__F0__sc_Iterator(xs) {
+    return $f_sc_Iterator__concat__F0__sc_Iterator(this, xs)
+  };
+  drop__I__sc_Iterator(n) {
+    return $f_sc_Iterator__drop__I__sc_Iterator(this, n)
+  };
+  toString__T() {
+    return "<iterator>"
+  };
+  foreach__F1__V(f) {
+    $f_sc_IterableOnceOps__foreach__F1__V(this, f)
+  };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
+  copyToArray__O__I__I(xs, start) {
+    return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
+  };
+  copyToArray__O__I__I__I(xs, start, len) {
+    return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
+  };
+  addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
+    return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+  };
+  knownSize__I() {
+    return (-1)
+  };
+  next__O() {
+    if ((!this.hasNext__Z())) {
+      throw $ct_ju_NoSuchElementException__(new $c_ju_NoSuchElementException())
+    };
+    const value = $as_sci_MapNode(this.sci_ChampBaseIterator__f_currentValueNode).getValue__I__O(this.sci_ChampBaseIterator__f_currentValueCursor);
+    this.sci_ChampBaseIterator__f_currentValueCursor = ((1 + this.sci_ChampBaseIterator__f_currentValueCursor) | 0);
+    return value
+  };
+}
+const $d_sci_MapValueIterator = new $TypeData().initClass({
+  sci_MapValueIterator: 0
+}, false, "scala.collection.immutable.MapValueIterator", {
+  sci_MapValueIterator: 1,
+  sci_ChampBaseIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_sci_MapValueIterator.prototype.$classData = $d_sci_MapValueIterator;
 class $c_sci_Seq$ extends $c_sc_SeqFactory$Delegate {
   constructor() {
     super();
@@ -13100,8 +13242,17 @@ const $d_s_Some = new $TypeData().initClass({
 });
 $c_s_Some.prototype.$classData = $d_s_Some;
 class $c_sc_AbstractIterable extends $c_O {
+  iterableFactory__sc_IterableFactory() {
+    return $m_sc_Iterable$()
+  };
   className__T() {
     return this.stringPrefix__T()
+  };
+  stringPrefix__T() {
+    return "Iterable"
+  };
+  toString__T() {
+    return $f_sc_Iterable__toString__T(this)
   };
   fromSpecific__sc_IterableOnce__sc_IterableOps(coll) {
     return $as_sc_IterableOps(this.iterableFactory__sc_IterableFactory().from__sc_IterableOnce__O(coll))
@@ -13117,9 +13268,6 @@ class $c_sc_AbstractIterable extends $c_O {
   };
   tail__O() {
     return $f_sc_IterableOps__tail__O(this)
-  };
-  map__F1__O(f) {
-    return $f_sc_IterableOps__map__F1__O(this, f)
   };
   unzip__F1__T2(asPair) {
     return $f_sc_IterableOps__unzip__F1__T2(this, asPair)
@@ -13520,6 +13668,9 @@ class $c_sci_Map$Map2$$anon$1 extends $c_sci_Map$Map2$Map2Iterator {
     super();
     $ct_sci_Map$Map2$Map2Iterator__sci_Map$Map2__(this, outer)
   };
+  nextResult__O__O__O(k, v) {
+    return new $c_T2(k, v)
+  };
 }
 const $d_sci_Map$Map2$$anon$1 = new $TypeData().initClass({
   sci_Map$Map2$$anon$1: 0
@@ -13533,10 +13684,34 @@ const $d_sci_Map$Map2$$anon$1 = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_sci_Map$Map2$$anon$1.prototype.$classData = $d_sci_Map$Map2$$anon$1;
+class $c_sci_Map$Map2$$anon$3 extends $c_sci_Map$Map2$Map2Iterator {
+  constructor(outer) {
+    super();
+    $ct_sci_Map$Map2$Map2Iterator__sci_Map$Map2__(this, outer)
+  };
+  nextResult__O__O__O(k, v) {
+    return v
+  };
+}
+const $d_sci_Map$Map2$$anon$3 = new $TypeData().initClass({
+  sci_Map$Map2$$anon$3: 0
+}, false, "scala.collection.immutable.Map$Map2$$anon$3", {
+  sci_Map$Map2$$anon$3: 1,
+  sci_Map$Map2$Map2Iterator: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_sci_Map$Map2$$anon$3.prototype.$classData = $d_sci_Map$Map2$$anon$3;
 class $c_sci_Map$Map3$$anon$4 extends $c_sci_Map$Map3$Map3Iterator {
   constructor(outer) {
     super();
     $ct_sci_Map$Map3$Map3Iterator__sci_Map$Map3__(this, outer)
+  };
+  nextResult__O__O__O(k, v) {
+    return new $c_T2(k, v)
   };
 }
 const $d_sci_Map$Map3$$anon$4 = new $TypeData().initClass({
@@ -13551,10 +13726,34 @@ const $d_sci_Map$Map3$$anon$4 = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_sci_Map$Map3$$anon$4.prototype.$classData = $d_sci_Map$Map3$$anon$4;
+class $c_sci_Map$Map3$$anon$6 extends $c_sci_Map$Map3$Map3Iterator {
+  constructor(outer) {
+    super();
+    $ct_sci_Map$Map3$Map3Iterator__sci_Map$Map3__(this, outer)
+  };
+  nextResult__O__O__O(k, v) {
+    return v
+  };
+}
+const $d_sci_Map$Map3$$anon$6 = new $TypeData().initClass({
+  sci_Map$Map3$$anon$6: 0
+}, false, "scala.collection.immutable.Map$Map3$$anon$6", {
+  sci_Map$Map3$$anon$6: 1,
+  sci_Map$Map3$Map3Iterator: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_sci_Map$Map3$$anon$6.prototype.$classData = $d_sci_Map$Map3$$anon$6;
 class $c_sci_Map$Map4$$anon$7 extends $c_sci_Map$Map4$Map4Iterator {
   constructor(outer) {
     super();
     $ct_sci_Map$Map4$Map4Iterator__sci_Map$Map4__(this, outer)
+  };
+  nextResult__O__O__O(k, v) {
+    return new $c_T2(k, v)
   };
 }
 const $d_sci_Map$Map4$$anon$7 = new $TypeData().initClass({
@@ -13569,6 +13768,27 @@ const $d_sci_Map$Map4$$anon$7 = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_sci_Map$Map4$$anon$7.prototype.$classData = $d_sci_Map$Map4$$anon$7;
+class $c_sci_Map$Map4$$anon$9 extends $c_sci_Map$Map4$Map4Iterator {
+  constructor(outer) {
+    super();
+    $ct_sci_Map$Map4$Map4Iterator__sci_Map$Map4__(this, outer)
+  };
+  nextResult__O__O__O(k, v) {
+    return v
+  };
+}
+const $d_sci_Map$Map4$$anon$9 = new $TypeData().initClass({
+  sci_Map$Map4$$anon$9: 0
+}, false, "scala.collection.immutable.Map$Map4$$anon$9", {
+  sci_Map$Map4$$anon$9: 1,
+  sci_Map$Map4$Map4Iterator: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_sci_Map$Map4$$anon$9.prototype.$classData = $d_sci_Map$Map4$$anon$9;
 class $c_sci_RangeIterator extends $c_sc_AbstractIterator {
   constructor(start, step, lastElement, initiallyEmpty) {
     super();
@@ -14084,6 +14304,27 @@ const $d_scm_HashMap$$anon$1 = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_scm_HashMap$$anon$1.prototype.$classData = $d_scm_HashMap$$anon$1;
+class $c_scm_HashMap$$anon$3 extends $c_scm_HashMap$HashMapIterator {
+  constructor(outer) {
+    super();
+    $ct_scm_HashMap$HashMapIterator__scm_HashMap__(this, outer)
+  };
+  extract__scm_HashMap$Node__O(nd) {
+    return nd.scm_HashMap$Node__f__value
+  };
+}
+const $d_scm_HashMap$$anon$3 = new $TypeData().initClass({
+  scm_HashMap$$anon$3: 0
+}, false, "scala.collection.mutable.HashMap$$anon$3", {
+  scm_HashMap$$anon$3: 1,
+  scm_HashMap$HashMapIterator: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_scm_HashMap$$anon$3.prototype.$classData = $d_scm_HashMap$$anon$3;
 class $c_scm_HashMap$$anon$4 extends $c_scm_HashMap$HashMapIterator {
   constructor(outer) {
     super();
@@ -14801,7 +15042,7 @@ function $m_s_math_Ordering$Char$() {
   };
   return $n_s_math_Ordering$Char$
 }
-class $c_s_math_Ordering$DeprecatedDoubleOrdering$ extends $c_O {
+class $c_s_math_Ordering$Double$TotalOrdering$ extends $c_O {
   lteq__O__O__Z(x, y) {
     return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
   };
@@ -14817,10 +15058,10 @@ class $c_s_math_Ordering$DeprecatedDoubleOrdering$ extends $c_O {
     return $m_jl_Double$().compare__D__D__I(x$1, y$1)
   };
 }
-const $d_s_math_Ordering$DeprecatedDoubleOrdering$ = new $TypeData().initClass({
-  s_math_Ordering$DeprecatedDoubleOrdering$: 0
-}, false, "scala.math.Ordering$DeprecatedDoubleOrdering$", {
-  s_math_Ordering$DeprecatedDoubleOrdering$: 1,
+const $d_s_math_Ordering$Double$TotalOrdering$ = new $TypeData().initClass({
+  s_math_Ordering$Double$TotalOrdering$: 0
+}, false, "scala.math.Ordering$Double$TotalOrdering$", {
+  s_math_Ordering$Double$TotalOrdering$: 1,
   O: 1,
   s_math_Ordering$Double$TotalOrdering: 1,
   s_math_Ordering: 1,
@@ -14829,13 +15070,13 @@ const $d_s_math_Ordering$DeprecatedDoubleOrdering$ = new $TypeData().initClass({
   s_math_Equiv: 1,
   Ljava_io_Serializable: 1
 });
-$c_s_math_Ordering$DeprecatedDoubleOrdering$.prototype.$classData = $d_s_math_Ordering$DeprecatedDoubleOrdering$;
-let $n_s_math_Ordering$DeprecatedDoubleOrdering$ = (void 0);
-function $m_s_math_Ordering$DeprecatedDoubleOrdering$() {
-  if ((!$n_s_math_Ordering$DeprecatedDoubleOrdering$)) {
-    $n_s_math_Ordering$DeprecatedDoubleOrdering$ = new $c_s_math_Ordering$DeprecatedDoubleOrdering$()
+$c_s_math_Ordering$Double$TotalOrdering$.prototype.$classData = $d_s_math_Ordering$Double$TotalOrdering$;
+let $n_s_math_Ordering$Double$TotalOrdering$ = (void 0);
+function $m_s_math_Ordering$Double$TotalOrdering$() {
+  if ((!$n_s_math_Ordering$Double$TotalOrdering$)) {
+    $n_s_math_Ordering$Double$TotalOrdering$ = new $c_s_math_Ordering$Double$TotalOrdering$()
   };
-  return $n_s_math_Ordering$DeprecatedDoubleOrdering$
+  return $n_s_math_Ordering$Double$TotalOrdering$
 }
 class $c_s_math_Ordering$Long$ extends $c_O {
   lteq__O__O__Z(x, y) {
@@ -15324,6 +15565,38 @@ class $c_sc_AbstractView extends $c_sc_AbstractIterable {
     return "View"
   };
 }
+class $c_sc_MapOps$$anon$1 extends $c_sc_AbstractIterable {
+  constructor(outer) {
+    super();
+    this.sc_MapOps$$anon$1__f_$outer = null;
+    if ((outer === null)) {
+      throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(null)
+    } else {
+      this.sc_MapOps$$anon$1__f_$outer = outer
+    }
+  };
+  knownSize__I() {
+    return this.sc_MapOps$$anon$1__f_$outer.knownSize__I()
+  };
+  iterator__sc_Iterator() {
+    return this.sc_MapOps$$anon$1__f_$outer.valuesIterator__sc_Iterator()
+  };
+}
+const $d_sc_MapOps$$anon$1 = new $TypeData().initClass({
+  sc_MapOps$$anon$1: 0
+}, false, "scala.collection.MapOps$$anon$1", {
+  sc_MapOps$$anon$1: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  scg_DefaultSerializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_sc_MapOps$$anon$1.prototype.$classData = $d_sc_MapOps$$anon$1;
 const $f_sc_Set__equals__O__Z = (function($thiz, that) {
   if ($is_sc_Set(that)) {
     const x2 = $as_sc_Set(that);
@@ -15919,9 +16192,6 @@ class $c_sc_SeqView$Sorted extends $c_O {
   drop__I__O(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
   };
-  map__F1__O(f) {
-    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
-  };
   sorted__s_math_Ordering__O(ord) {
     return this.sorted__s_math_Ordering__sc_SeqView(ord)
   };
@@ -16050,9 +16320,6 @@ class $c_sc_SeqView$Sorted$ReverseSorted extends $c_O {
   };
   drop__I__O(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
-  };
-  map__F1__O(f) {
-    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
   };
   sorted__s_math_Ordering__O(ord) {
     return this.sorted__s_math_Ordering__sc_SeqView(ord)
@@ -16504,9 +16771,6 @@ class $c_sc_AbstractSeq extends $c_sc_AbstractIterable {
   };
 }
 class $c_sc_AbstractSeqView extends $c_sc_AbstractView {
-  map__F1__sc_SeqView(f) {
-    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
-  };
   drop__I__sc_SeqView(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
   };
@@ -16534,9 +16798,6 @@ class $c_sc_AbstractSeqView extends $c_sc_AbstractView {
   };
   drop__I__O(n) {
     return this.drop__I__sc_SeqView(n)
-  };
-  map__F1__O(f) {
-    return this.map__F1__sc_SeqView(f)
   };
 }
 function $is_sc_IndexedSeq(obj) {
@@ -16601,6 +16862,9 @@ class $c_sc_AbstractMap extends $c_sc_AbstractIterable {
   apply__O__O(key) {
     return $f_sc_MapOps__apply__O__O(this, key)
   };
+  valuesIterator__sc_Iterator() {
+    return new $c_sc_MapOps$$anon$3(this)
+  };
   default__O__O(key) {
     return $f_sc_MapOps__default__O__O(this, key)
   };
@@ -16620,9 +16884,6 @@ class $c_sc_SeqView$Drop extends $c_sc_View$Drop {
   constructor() {
     super();
     this.sc_SeqView$Drop__f_underlying = null
-  };
-  map__F1__sc_SeqView(f) {
-    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
   };
   drop__I__sc_SeqView(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
@@ -16659,9 +16920,6 @@ class $c_sc_SeqView$Drop extends $c_sc_View$Drop {
   };
   drop__I__O(n) {
     return this.drop__I__sc_SeqView(n)
-  };
-  map__F1__O(f) {
-    return this.map__F1__sc_SeqView(f)
   };
 }
 const $d_sc_SeqView$Drop = new $TypeData().initClass({
@@ -16739,24 +16997,9 @@ class $c_sc_SeqView$Map extends $c_sc_View$Map {
     this.sc_SeqView$Map__f_underlying = null;
     this.sc_SeqView$Map__f_f = null
   };
-  map__F1__sc_SeqView(f) {
-    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
-  };
-  drop__I__sc_SeqView(n) {
-    return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
-  };
-  stringPrefix__T() {
-    return "SeqView"
-  };
-  reverseIterator__sc_Iterator() {
-    return this.reversed__sc_Iterable().iterator__sc_Iterator()
-  };
   indexWhere__F1__I__I(p, from) {
     const this$1 = this.iterator__sc_Iterator();
     return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
-  };
-  lengthCompare__I__I(len) {
-    return $f_sc_IterableOps__sizeCompare__I__I(this, len)
   };
   isEmpty__Z() {
     return $f_sc_SeqOps__isEmpty__Z(this)
@@ -16773,32 +17016,7 @@ class $c_sc_SeqView$Map extends $c_sc_View$Map {
   sorted__s_math_Ordering__O(ord) {
     return new $c_sc_SeqView$Sorted(this, ord)
   };
-  drop__I__O(n) {
-    return this.drop__I__sc_SeqView(n)
-  };
-  map__F1__O(f) {
-    return this.map__F1__sc_SeqView(f)
-  };
 }
-const $d_sc_SeqView$Map = new $TypeData().initClass({
-  sc_SeqView$Map: 0
-}, false, "scala.collection.SeqView$Map", {
-  sc_SeqView$Map: 1,
-  sc_View$Map: 1,
-  sc_AbstractView: 1,
-  sc_AbstractIterable: 1,
-  O: 1,
-  sc_Iterable: 1,
-  sc_IterableOnce: 1,
-  sc_IterableOps: 1,
-  sc_IterableOnceOps: 1,
-  sc_IterableFactoryDefaults: 1,
-  sc_View: 1,
-  Ljava_io_Serializable: 1,
-  sc_SeqView: 1,
-  sc_SeqOps: 1
-});
-$c_sc_SeqView$Map.prototype.$classData = $d_sc_SeqView$Map;
 const $ct_sc_SeqView$Reverse__sc_SeqOps__ = (function($thiz, underlying) {
   $thiz.sc_SeqView$Reverse__f_underlying = underlying;
   return $thiz
@@ -16877,6 +17095,26 @@ const $f_scm_MapOps__getOrElseUpdate__O__F0__O = (function($thiz, key, op) {
     }
   }
 });
+class $c_sc_AbstractMapView extends $c_sc_AbstractView {
+  toString__T() {
+    return $f_sc_View__toString__T(this)
+  };
+  stringPrefix__T() {
+    return "MapView"
+  };
+  apply__O__O(key) {
+    return $f_sc_MapOps__apply__O__O(this, key)
+  };
+  valuesIterator__sc_Iterator() {
+    return new $c_sc_MapOps$$anon$3(this)
+  };
+  default__O__O(key) {
+    return $f_sc_MapOps__default__O__O(this, key)
+  };
+  addString__scm_StringBuilder__T__T__T__scm_StringBuilder(sb, start, sep, end) {
+    return $f_sc_MapOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, sb, start, sep, end)
+  };
+}
 function $is_sci_Map(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.sci_Map)))
 }
@@ -16909,12 +17147,6 @@ class $c_sc_AbstractIndexedSeqView extends $c_sc_AbstractSeqView {
   knownSize__I() {
     return this.length__I()
   };
-  map__F1__sc_SeqView(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
-  map__F1__O(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
   };
@@ -16922,6 +17154,99 @@ class $c_sc_AbstractIndexedSeqView extends $c_sc_AbstractSeqView {
     return new $c_sc_IndexedSeqView$Drop(this, n)
   };
 }
+class $c_sc_MapView$FilterKeys extends $c_sc_AbstractMapView {
+  constructor(underlying, p) {
+    super();
+    this.sc_MapView$FilterKeys__f_underlying = null;
+    this.sc_MapView$FilterKeys__f_p = null;
+    this.sc_MapView$FilterKeys__f_underlying = underlying;
+    this.sc_MapView$FilterKeys__f_p = p
+  };
+  iterator__sc_Iterator() {
+    const this$2 = this.sc_MapView$FilterKeys__f_underlying.iterator__sc_Iterator();
+    const p = new $c_sjsr_AnonFunction1(((this$1) => ((x0$1$2) => {
+      const x0$1 = $as_T2(x0$1$2);
+      if ((x0$1 !== null)) {
+        const k = x0$1.T2__f__1;
+        return $uZ(this$1.sc_MapView$FilterKeys__f_p.apply__O__O(k))
+      } else {
+        throw new $c_s_MatchError(x0$1)
+      }
+    }))(this));
+    return new $c_sc_Iterator$$anon$6(this$2, p, false)
+  };
+  get__O__s_Option(key) {
+    return ($uZ(this.sc_MapView$FilterKeys__f_p.apply__O__O(key)) ? this.sc_MapView$FilterKeys__f_underlying.get__O__s_Option(key) : $m_s_None$())
+  };
+  knownSize__I() {
+    return ((this.sc_MapView$FilterKeys__f_underlying.knownSize__I() === 0) ? 0 : (-1))
+  };
+  isEmpty__Z() {
+    const this$1 = this.iterator__sc_Iterator();
+    return (!this$1.hasNext__Z())
+  };
+}
+const $d_sc_MapView$FilterKeys = new $TypeData().initClass({
+  sc_MapView$FilterKeys: 0
+}, false, "scala.collection.MapView$FilterKeys", {
+  sc_MapView$FilterKeys: 1,
+  sc_AbstractMapView: 1,
+  sc_AbstractView: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_View: 1,
+  Ljava_io_Serializable: 1,
+  sc_MapView: 1,
+  sc_MapOps: 1,
+  s_PartialFunction: 1,
+  F1: 1
+});
+$c_sc_MapView$FilterKeys.prototype.$classData = $d_sc_MapView$FilterKeys;
+class $c_sc_MapView$Id extends $c_sc_AbstractMapView {
+  constructor(underlying) {
+    super();
+    this.sc_MapView$Id__f_underlying = null;
+    this.sc_MapView$Id__f_underlying = underlying
+  };
+  get__O__s_Option(key) {
+    return this.sc_MapView$Id__f_underlying.get__O__s_Option(key)
+  };
+  iterator__sc_Iterator() {
+    return this.sc_MapView$Id__f_underlying.iterator__sc_Iterator()
+  };
+  knownSize__I() {
+    return this.sc_MapView$Id__f_underlying.knownSize__I()
+  };
+  isEmpty__Z() {
+    return this.sc_MapView$Id__f_underlying.isEmpty__Z()
+  };
+}
+const $d_sc_MapView$Id = new $TypeData().initClass({
+  sc_MapView$Id: 0
+}, false, "scala.collection.MapView$Id", {
+  sc_MapView$Id: 1,
+  sc_AbstractMapView: 1,
+  sc_AbstractView: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_View: 1,
+  Ljava_io_Serializable: 1,
+  sc_MapView: 1,
+  sc_MapOps: 1,
+  s_PartialFunction: 1,
+  F1: 1
+});
+$c_sc_MapView$Id.prototype.$classData = $d_sc_MapView$Id;
 class $c_sci_AbstractSet extends $c_sc_AbstractSet {
   iterableFactory__sc_IterableFactory() {
     return $m_sci_Set$()
@@ -16950,12 +17275,6 @@ class $c_sc_IndexedSeqView$Drop extends $c_sc_SeqView$Drop {
   };
   knownSize__I() {
     return this.length__I()
-  };
-  map__F1__sc_SeqView(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
-  map__F1__O(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
   };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
@@ -17010,12 +17329,6 @@ class $c_sc_IndexedSeqView$Id extends $c_sc_SeqView$Id {
   knownSize__I() {
     return this.length__I()
   };
-  map__F1__sc_SeqView(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
-  map__F1__O(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
   };
@@ -17059,24 +17372,12 @@ class $c_sc_IndexedSeqView$Map extends $c_sc_SeqView$Map {
   stringPrefix__T() {
     return "IndexedSeqView"
   };
-  reversed__sc_Iterable() {
-    return new $c_sc_IndexedSeqView$Reverse(this)
-  };
   lengthCompare__I__I(len) {
     const x = this.length__I();
     return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
   };
   knownSize__I() {
     return this.length__I()
-  };
-  map__F1__sc_SeqView(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
-  map__F1__O(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
-  drop__I__sc_SeqView(n) {
-    return new $c_sc_IndexedSeqView$Drop(this, n)
   };
   drop__I__O(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
@@ -17129,12 +17430,6 @@ class $c_sc_IndexedSeqView$Reverse extends $c_sc_SeqView$Reverse {
   };
   knownSize__I() {
     return this.length__I()
-  };
-  map__F1__sc_SeqView(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
-  };
-  map__F1__O(f) {
-    return new $c_sc_IndexedSeqView$Map(this, f)
   };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
@@ -17425,9 +17720,6 @@ class $c_sci_Set$Set1 extends $c_sci_AbstractSet {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   size__I() {
     return 1
   };
@@ -17498,9 +17790,6 @@ class $c_sci_Set$Set2 extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
-  };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 2
@@ -17581,9 +17870,6 @@ class $c_sci_Set$Set3 extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
-  };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 3
@@ -17669,9 +17955,6 @@ class $c_sci_Set$Set4 extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
-  };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 4
@@ -17861,9 +18144,6 @@ class $c_sci_Map$Map1 extends $c_sci_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   size__I() {
     return 1
   };
@@ -17892,6 +18172,11 @@ class $c_sci_Map$Map1 extends $c_sci_AbstractMap {
   iterator__sc_Iterator() {
     $m_sc_Iterator$();
     const a = new $c_T2(this.sci_Map$Map1__f_key1, this.sci_Map$Map1__f_value1);
+    return new $c_sc_Iterator$$anon$20(a)
+  };
+  valuesIterator__sc_Iterator() {
+    $m_sc_Iterator$();
+    const a = this.sci_Map$Map1__f_value1;
     return new $c_sc_Iterator$$anon$20(a)
   };
   updated__O__O__sci_Map(key, value) {
@@ -17945,9 +18230,6 @@ class $c_sci_Map$Map2 extends $c_sci_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   size__I() {
     return 2
   };
@@ -17977,6 +18259,9 @@ class $c_sci_Map$Map2 extends $c_sci_AbstractMap {
   };
   iterator__sc_Iterator() {
     return new $c_sci_Map$Map2$$anon$1(this)
+  };
+  valuesIterator__sc_Iterator() {
+    return new $c_sci_Map$Map2$$anon$3(this)
   };
   updated__O__O__sci_Map(key, value) {
     return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1) ? new $c_sci_Map$Map2(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, value, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2) ? new $c_sci_Map$Map2(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, value) : new $c_sci_Map$Map3(this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value1, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$key2, this.sci_Map$Map2__f_scala$collection$immutable$Map$Map2$$value2, key, value)))
@@ -18034,9 +18319,6 @@ class $c_sci_Map$Map3 extends $c_sci_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   size__I() {
     return 3
   };
@@ -18068,6 +18350,9 @@ class $c_sci_Map$Map3 extends $c_sci_AbstractMap {
   };
   iterator__sc_Iterator() {
     return new $c_sci_Map$Map3$$anon$4(this)
+  };
+  valuesIterator__sc_Iterator() {
+    return new $c_sci_Map$Map3$$anon$6(this)
   };
   updated__O__O__sci_Map(key, value) {
     return ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1) ? new $c_sci_Map$Map3(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, value, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2) ? new $c_sci_Map$Map3(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, value, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3) : ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3) ? new $c_sci_Map$Map3(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, value) : new $c_sci_Map$Map4(this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value1, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value2, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$key3, this.sci_Map$Map3__f_scala$collection$immutable$Map$Map3$$value3, key, value))))
@@ -18130,9 +18415,6 @@ class $c_sci_Map$Map4 extends $c_sci_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   size__I() {
     return 4
   };
@@ -18166,6 +18448,9 @@ class $c_sci_Map$Map4 extends $c_sci_AbstractMap {
   };
   iterator__sc_Iterator() {
     return new $c_sci_Map$Map4$$anon$7(this)
+  };
+  valuesIterator__sc_Iterator() {
+    return new $c_sci_Map$Map4$$anon$9(this)
   };
   updated__O__O__sci_Map(key, value) {
     if ($m_sr_BoxesRunTime$().equals__O__O__Z(key, this.sci_Map$Map4__f_scala$collection$immutable$Map$Map4$$key1)) {
@@ -18255,9 +18540,6 @@ class $c_sci_HashSet extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
-  };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   iterableFactory__sc_IterableFactory() {
     return $m_sci_HashSet$()
@@ -19142,9 +19424,6 @@ class $c_sci_HashMap extends $c_sci_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   mapFactory__sc_MapFactory() {
     return $m_sci_HashMap$()
   };
@@ -19159,6 +19438,9 @@ class $c_sci_HashMap extends $c_sci_AbstractMap {
   };
   iterator__sc_Iterator() {
     return (this.isEmpty__Z() ? $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty : new $c_sci_MapKeyValueTupleIterator(this.sci_HashMap__f_rootNode))
+  };
+  valuesIterator__sc_Iterator() {
+    return (this.isEmpty__Z() ? $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty : new $c_sci_MapValueIterator(this.sci_HashMap__f_rootNode))
   };
   contains__O__Z(key) {
     const keyUnimprovedHash = $m_sr_Statics$().anyHash__O__I(key);
@@ -22777,9 +23059,6 @@ class $c_scm_HashMap extends $c_scm_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
-  map__F1__O(f) {
-    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
-  };
   size__I() {
     return this.scm_HashMap__f_contentSize
   };
@@ -22813,6 +23092,9 @@ class $c_scm_HashMap extends $c_scm_AbstractMap {
   };
   iterator__sc_Iterator() {
     return ((this.scm_HashMap__f_contentSize === 0) ? $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty : new $c_scm_HashMap$$anon$1(this))
+  };
+  valuesIterator__sc_Iterator() {
+    return ((this.scm_HashMap__f_contentSize === 0) ? $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty : new $c_scm_HashMap$$anon$3(this))
   };
   nodeIterator__sc_Iterator() {
     return ((this.scm_HashMap__f_contentSize === 0) ? $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty : new $c_scm_HashMap$$anon$4(this))
