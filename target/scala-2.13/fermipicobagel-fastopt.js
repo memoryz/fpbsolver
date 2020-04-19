@@ -1151,8 +1151,13 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
   constructor() {
     super();
     this.LFermiPicoBagel_webapp_Solver$__f_random = null;
+    this.LFermiPicoBagel_webapp_Solver$__f_log2 = null;
     $n_LFermiPicoBagel_webapp_Solver$ = this;
-    this.LFermiPicoBagel_webapp_Solver$__f_random = $ct_s_util_Random__(new $c_s_util_Random())
+    this.LFermiPicoBagel_webapp_Solver$__f_random = $ct_s_util_Random__(new $c_s_util_Random());
+    this.LFermiPicoBagel_webapp_Solver$__f_log2 = new $c_sjsr_AnonFunction1(((this$1) => ((x$8$2) => {
+      const x$8 = $uD(x$8$2);
+      return ($uD(Math.log(x$8)) / $uD(Math.log(2.0)))
+    }))(this))
   };
   FermiPicoBagel$webapp$Solver$$responseMatch__T__T__Z(r1, r2) {
     const this$1 = $m_s_Predef$().wrapString__T__sci_WrappedString($as_T(r1.toLowerCase()));
@@ -1333,8 +1338,8 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
     const it = allResponse.iterator__sc_Iterator();
     while (it.hasNext__Z()) {
       const elem = it.next__O();
-      const x$8 = $as_T3(elem);
-      const key = $as_T(x$8.T3__f__1);
+      const x$9 = $as_T3(elem);
+      const key = $as_T(x$9.T3__f__1);
       const bldr = $as_scm_Builder(m.getOrElseUpdate__O__F0__O(key, new $c_sjsr_AnonFunction0(((this$5) => (() => this$5.newSpecificBuilder__scm_Builder()))(allResponse))));
       bldr.addOne__O__scm_Growable(elem)
     };
@@ -1366,8 +1371,8 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
       const it$2 = responseGroup.iterator__sc_Iterator();
       while (it$2.hasNext__Z()) {
         const elem$1 = it$2.next__O();
-        const x$9 = $as_T3(elem$1);
-        const key$1 = $as_T(x$9.T3__f__3);
+        const x$10 = $as_T3(elem$1);
+        const key$1 = $as_T(x$10.T3__f__3);
         const bldr$1 = $as_scm_Builder(m$1.getOrElseUpdate__O__F0__O(key$1, new $c_sjsr_AnonFunction0(((this$9) => (() => this$9.newSpecificBuilder__scm_Builder()))(responseGroup))));
         bldr$1.addOne__O__scm_Growable(elem$1)
       };
@@ -1383,28 +1388,34 @@ class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
         const v$1 = $as_scm_Builder(x1$1.T2__f__2);
         result$1 = result$1.updated__O__O__sci_HashMap(k$1, v$1.result__O())
       };
-      const this$12 = result$1;
-      const f$3 = new $c_sjsr_AnonFunction1(((this$2$1) => ((x$10$2) => {
-        const x$10 = $as_T2(x$10$2);
-        const this$11 = $as_sc_SeqOps(x$10.T2__f__2);
-        return this$11.length__I()
-      }))(this));
-      const cmp = $m_s_math_Ordering$Int$();
-      const worstCase = $as_T2($f_sc_IterableOnceOps__maxBy__F1__s_math_Ordering__O(this$12, f$3, cmp));
-      const this$13 = $as_sc_SeqOps(worstCase.T2__f__2);
-      const _2 = this$13.length__I();
+      const this$11 = result$1;
+      const b$1 = $m_sci_Iterable$().newBuilder__scm_Builder();
+      const it$3 = this$11.iterator__sc_Iterator();
+      while (it$3.hasNext__Z()) {
+        const arg1$7 = it$3.next__O();
+        const x$11 = $as_T2(arg1$7);
+        const this$12 = $as_sc_SeqOps(x$11.T2__f__2);
+        const elem$2 = this$12.length__I();
+        b$1.addOne__O__scm_Growable(elem$2)
+      };
+      const cost = $uD($as_sc_IterableOnceOps($as_sc_IterableOps(b$1.result__O()).map__F1__O(new $c_sjsr_AnonFunction1(((this$3$1) => ((s$2) => {
+        const s = $uI(s$2);
+        const this$13 = $m_LFermiPicoBagel_webapp_Solver$().LFermiPicoBagel_webapp_Solver$__f_log2;
+        const v1 = s;
+        return (s * $uD(this$13.apply__O__O(v1)))
+      }))(this)))).sum__s_math_Numeric__O($m_s_math_Numeric$DoubleIsFractional$()));
       $p_sci_HashMapBuilder__ensureUnaliased__V(b);
       const h$3 = $m_sr_Statics$().anyHash__O__I(guess$2);
       const im = $m_sc_Hashing$().improve__I__I(h$3);
-      b.update__sci_MapNode__O__O__I__I__I__V(b.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, guess$2, _2, h$3, im, 0)
+      b.update__sci_MapNode__O__O__I__I__I__V(b.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, guess$2, cost, h$3, im, 0)
     };
     const this$14 = b.result__sci_HashMap();
-    const f$4 = new $c_sjsr_AnonFunction1(((this$6$1) => ((x$11$2) => {
-      const x$11 = $as_T2(x$11$2);
-      return $uI(x$11.T2__f__2)
+    const f$3 = new $c_sjsr_AnonFunction1(((this$6$1) => ((x$12$2) => {
+      const x$12 = $as_T2(x$12$2);
+      return $uD(x$12.T2__f__2)
     }))(this));
-    const cmp$1 = $m_s_math_Ordering$Int$();
-    const bestOfWorst = $as_T2($f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O(this$14, f$4, cmp$1));
+    const cmp = $m_s_math_Ordering$DeprecatedDoubleOrdering$();
+    const bestOfWorst = $as_T2($f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O(this$14, f$3, cmp));
     return $as_T(bestOfWorst.T2__f__1)
   };
 }
@@ -2700,6 +2711,24 @@ const $f_sc_IterableOnceOps__exists__F1__Z = (function($thiz, p) {
   };
   return res
 });
+const $f_sc_IterableOnceOps__reduceLeft__F2__O = (function($thiz, op) {
+  const it = $as_sc_IterableOnce($thiz).iterator__sc_Iterator();
+  if ((!it.hasNext__Z())) {
+    throw $ct_jl_UnsupportedOperationException__T__(new $c_jl_UnsupportedOperationException(), "empty.reduceLeft")
+  };
+  let first = true;
+  let acc = 0;
+  while (it.hasNext__Z()) {
+    const x = it.next__O();
+    if (first) {
+      acc = x;
+      first = false
+    } else {
+      acc = op.apply__O__O__O(acc, x)
+    }
+  };
+  return acc
+});
 const $f_sc_IterableOnceOps__isEmpty__Z = (function($thiz) {
   return (!$as_sc_IterableOnce($thiz).iterator__sc_Iterator().hasNext__Z())
 });
@@ -2737,22 +2766,13 @@ const $f_sc_IterableOnceOps__copyToArray__O__I__I__I = (function($thiz, xs, star
   };
   return ((i - start) | 0)
 });
-const $f_sc_IterableOnceOps__maxBy__F1__s_math_Ordering__O = (function($thiz, f, cmp) {
+const $f_sc_IterableOnceOps__sum__s_math_Numeric__O = (function($thiz, num) {
   if ($thiz.isEmpty__Z()) {
-    throw $ct_jl_UnsupportedOperationException__T__(new $c_jl_UnsupportedOperationException(), "empty.maxBy")
-  };
-  const maxF = new $c_sr_ObjectRef(null);
-  const maxElem = new $c_sr_ObjectRef(null);
-  const first = new $c_sr_BooleanRef(true);
-  $thiz.foreach__F1__V(new $c_sjsr_AnonFunction1(((this$4, f$1, first$1, cmp$1, maxF$1, maxElem$1) => ((elem$2) => {
-    const fx = f$1.apply__O__O(elem$2);
-    if ((first$1.sr_BooleanRef__f_elem || cmp$1.gt__O__O__Z(fx, maxF$1.sr_ObjectRef__f_elem))) {
-      maxElem$1.sr_ObjectRef__f_elem = elem$2;
-      maxF$1.sr_ObjectRef__f_elem = fx;
-      first$1.sr_BooleanRef__f_elem = false
-    }
-  }))($thiz, f, first, cmp, maxF, maxElem)));
-  return maxElem.sr_ObjectRef__f_elem
+    return num.fromInt__I__O(0)
+  } else {
+    const op = new $c_sjsr_AnonFunction2(((this$1, num$1) => ((x$2, y$2) => num$1.plus__O__O__O(x$2, y$2)))($thiz, num));
+    return $thiz.reduceLeft__F2__O(op)
+  }
 });
 const $f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O = (function($thiz, f, cmp) {
   if ($thiz.isEmpty__Z()) {
@@ -5371,6 +5391,45 @@ function $m_jl_Character$() {
   };
   return $n_jl_Character$
 }
+class $c_jl_Double$ extends $c_O {
+  constructor() {
+    super();
+    this.jl_Double$__f_doubleStrPat = null;
+    this.jl_Double$__f_doubleStrHexPat = null;
+    this.jl_Double$__f_bitmap$0 = 0
+  };
+  compare__D__D__I(a, b) {
+    if ((a !== a)) {
+      return ((b !== b) ? 0 : 1)
+    } else if ((b !== b)) {
+      return (-1)
+    } else if ((a === b)) {
+      if ((a === 0.0)) {
+        const ainf = (1.0 / a);
+        return ((ainf === (1.0 / b)) ? 0 : ((ainf < 0.0) ? (-1) : 1))
+      } else {
+        return 0
+      }
+    } else {
+      return ((a < b) ? (-1) : 1)
+    }
+  };
+}
+const $d_jl_Double$ = new $TypeData().initClass({
+  jl_Double$: 0
+}, false, "java.lang.Double$", {
+  jl_Double$: 1,
+  O: 1,
+  Ljava_io_Serializable: 1
+});
+$c_jl_Double$.prototype.$classData = $d_jl_Double$;
+let $n_jl_Double$ = (void 0);
+function $m_jl_Double$() {
+  if ((!$n_jl_Double$)) {
+    $n_jl_Double$ = new $c_jl_Double$()
+  };
+  return $n_jl_Double$
+}
 const $p_jl_Integer$__fail$1__T__E = (function($thiz, s$1) {
   throw new $c_jl_NumberFormatException((("For input string: \"" + s$1) + "\""))
 });
@@ -6460,6 +6519,11 @@ class $c_sr_AbstractFunction1 extends $c_O {
     return "<function1>"
   };
 }
+class $c_sr_AbstractFunction2 extends $c_O {
+  toString__T() {
+    return "<function2>"
+  };
+}
 class $c_sr_AbstractFunction3 extends $c_O {
   toString__T() {
     return "<function3>"
@@ -6867,6 +6931,9 @@ const $f_sc_IterableOps__tail__O = (function($thiz) {
     throw $ct_jl_UnsupportedOperationException__(new $c_jl_UnsupportedOperationException())
   };
   return $thiz.drop__I__O(1)
+});
+const $f_sc_IterableOps__map__F1__O = (function($thiz, f) {
+  return $thiz.iterableFactory__sc_IterableFactory().from__sc_IterableOnce__O($ct_sc_View$Map__sc_IterableOps__F1__(new $c_sc_View$Map(), $thiz, f))
 });
 const $f_sc_IterableOps__zipWithIndex__O = (function($thiz) {
   return $thiz.iterableFactory__sc_IterableFactory().from__sc_IterableOnce__O(new $c_sc_View$ZipWithIndex($thiz))
@@ -8662,6 +8729,25 @@ const $d_sjsr_AnonFunction1 = new $TypeData().initClass({
   F1: 1
 });
 $c_sjsr_AnonFunction1.prototype.$classData = $d_sjsr_AnonFunction1;
+class $c_sjsr_AnonFunction2 extends $c_sr_AbstractFunction2 {
+  constructor(f) {
+    super();
+    this.sjsr_AnonFunction2__f_f = null;
+    this.sjsr_AnonFunction2__f_f = f
+  };
+  apply__O__O__O(arg1, arg2) {
+    return (0, this.sjsr_AnonFunction2__f_f)(arg1, arg2)
+  };
+}
+const $d_sjsr_AnonFunction2 = new $TypeData().initClass({
+  sjsr_AnonFunction2: 0
+}, false, "scala.scalajs.runtime.AnonFunction2", {
+  sjsr_AnonFunction2: 1,
+  sr_AbstractFunction2: 1,
+  O: 1,
+  F2: 1
+});
+$c_sjsr_AnonFunction2.prototype.$classData = $d_sjsr_AnonFunction2;
 class $c_sjsr_AnonFunction3 extends $c_sr_AbstractFunction3 {
   constructor(f) {
     super();
@@ -9121,11 +9207,17 @@ class $c_sc_AbstractIterator extends $c_O {
   foreach__F1__V(f) {
     $f_sc_IterableOnceOps__foreach__F1__V(this, f)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
   };
   copyToArray__O__I__I__I(xs, start, len) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -12001,11 +12093,17 @@ class $c_sci_MapKeyValueTupleIterator extends $c_sci_ChampBaseIterator {
   foreach__F1__V(f) {
     $f_sc_IterableOnceOps__foreach__F1__V(this, f)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
   };
   copyToArray__O__I__I__I(xs, start, len) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -12163,11 +12261,17 @@ class $c_sci_SetHashIterator extends $c_sci_ChampBaseIterator {
   foreach__F1__V(f) {
     $f_sc_IterableOnceOps__foreach__F1__V(this, f)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
   };
   copyToArray__O__I__I__I(xs, start, len) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -12221,11 +12325,17 @@ class $c_sci_SetIterator extends $c_sci_ChampBaseIterator {
   foreach__F1__V(f) {
     $f_sc_IterableOnceOps__foreach__F1__V(this, f)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
   };
   copyToArray__O__I__I__I(xs, start, len) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -12628,9 +12738,6 @@ const $f_s_math_Ordering__lteq__O__O__Z = (function($thiz, x, y) {
 const $f_s_math_Ordering__lt__O__O__Z = (function($thiz, x, y) {
   return ($thiz.compare__O__O__I(x, y) < 0)
 });
-const $f_s_math_Ordering__gt__O__O__Z = (function($thiz, x, y) {
-  return ($thiz.compare__O__O__I(x, y) > 0)
-});
 const $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z = (function($thiz, other) {
   if ((other instanceof $c_s_math_Ordering$Reverse)) {
     const x2 = $as_s_math_Ordering$Reverse(other);
@@ -12868,9 +12975,6 @@ class $c_ju_Arrays$$anon$3 extends $c_O {
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
   };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
-  };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
   };
@@ -13014,6 +13118,9 @@ class $c_sc_AbstractIterable extends $c_O {
   tail__O() {
     return $f_sc_IterableOps__tail__O(this)
   };
+  map__F1__O(f) {
+    return $f_sc_IterableOps__map__F1__O(this, f)
+  };
   unzip__F1__T2(asPair) {
     return $f_sc_IterableOps__unzip__F1__T2(this, asPair)
   };
@@ -13026,6 +13133,9 @@ class $c_sc_AbstractIterable extends $c_O {
   exists__F1__Z(p) {
     return $f_sc_IterableOnceOps__exists__F1__Z(this, p)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   isEmpty__Z() {
     return $f_sc_IterableOnceOps__isEmpty__Z(this)
   };
@@ -13034,6 +13144,9 @@ class $c_sc_AbstractIterable extends $c_O {
   };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -14010,9 +14123,6 @@ class $c_s_math_Ordering$$anon$1 extends $c_O {
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
   };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
-  };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
   };
@@ -14035,6 +14145,12 @@ $c_s_math_Ordering$$anon$1.prototype.$classData = $d_s_math_Ordering$$anon$1;
 const $f_s_math_Ordering$CachedReverse__isReverseOf__s_math_Ordering__Z = (function($thiz, other) {
   return (other === $thiz.s_math_Ordering$Int$__f_scala$math$Ordering$CachedReverse$$_reverse)
 });
+const $f_s_math_Ordering$Double$IeeeOrdering__lteq__D__D__Z = (function($thiz, x, y) {
+  return (x <= y)
+});
+const $f_s_math_Ordering$Double$IeeeOrdering__lt__D__D__Z = (function($thiz, x, y) {
+  return (x < y)
+});
 class $c_s_math_Ordering$Reverse extends $c_O {
   constructor(outer) {
     super();
@@ -14053,9 +14169,6 @@ class $c_s_math_Ordering$Reverse extends $c_O {
   };
   lt__O__O__Z(x, y) {
     return this.s_math_Ordering$Reverse__f_outer.lt__O__O__Z(y, x)
-  };
-  gt__O__O__Z(x, y) {
-    return this.s_math_Ordering$Reverse__f_outer.gt__O__O__Z(y, x)
   };
   equals__O__Z(obj) {
     if ((obj !== null)) {
@@ -14587,9 +14700,6 @@ class $c_s_math_Ordering$Boolean$ extends $c_O {
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
   };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
-  };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
   };
@@ -14625,9 +14735,6 @@ class $c_s_math_Ordering$Byte$ extends $c_O {
   };
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
-  };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
   };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
@@ -14665,9 +14772,6 @@ class $c_s_math_Ordering$Char$ extends $c_O {
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
   };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
-  };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
   };
@@ -14697,15 +14801,48 @@ function $m_s_math_Ordering$Char$() {
   };
   return $n_s_math_Ordering$Char$
 }
-class $c_s_math_Ordering$Long$ extends $c_O {
+class $c_s_math_Ordering$DeprecatedDoubleOrdering$ extends $c_O {
   lteq__O__O__Z(x, y) {
     return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
   };
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
   };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
+  isReverseOf__s_math_Ordering__Z(other) {
+    return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+  };
+  compare__O__O__I(x, y) {
+    const x$1 = $uD(x);
+    const y$1 = $uD(y);
+    return $m_jl_Double$().compare__D__D__I(x$1, y$1)
+  };
+}
+const $d_s_math_Ordering$DeprecatedDoubleOrdering$ = new $TypeData().initClass({
+  s_math_Ordering$DeprecatedDoubleOrdering$: 0
+}, false, "scala.math.Ordering$DeprecatedDoubleOrdering$", {
+  s_math_Ordering$DeprecatedDoubleOrdering$: 1,
+  O: 1,
+  s_math_Ordering$Double$TotalOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$DeprecatedDoubleOrdering$.prototype.$classData = $d_s_math_Ordering$DeprecatedDoubleOrdering$;
+let $n_s_math_Ordering$DeprecatedDoubleOrdering$ = (void 0);
+function $m_s_math_Ordering$DeprecatedDoubleOrdering$() {
+  if ((!$n_s_math_Ordering$DeprecatedDoubleOrdering$)) {
+    $n_s_math_Ordering$DeprecatedDoubleOrdering$ = new $c_s_math_Ordering$DeprecatedDoubleOrdering$()
+  };
+  return $n_s_math_Ordering$DeprecatedDoubleOrdering$
+}
+class $c_s_math_Ordering$Long$ extends $c_O {
+  lteq__O__O__Z(x, y) {
+    return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+  };
+  lt__O__O__Z(x, y) {
+    return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
   };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
@@ -14746,9 +14883,6 @@ class $c_s_math_Ordering$Short$ extends $c_O {
   };
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
-  };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
   };
   isReverseOf__s_math_Ordering__Z(other) {
     return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
@@ -14984,11 +15118,17 @@ class $c_sci_MapKeyValueTupleHashIterator extends $c_sci_ChampBaseReverseIterato
   foreach__F1__V(f) {
     $f_sc_IterableOnceOps__foreach__F1__V(this, f)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
   };
   copyToArray__O__I__I__I(xs, start, len) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -15036,6 +15176,12 @@ const $d_sci_MapKeyValueTupleHashIterator = new $TypeData().initClass({
   s_Equals: 1
 });
 $c_sci_MapKeyValueTupleHashIterator.prototype.$classData = $d_sci_MapKeyValueTupleHashIterator;
+const $f_s_math_Numeric$DoubleIsFractional__plus__D__D__D = (function($thiz, x, y) {
+  return (x + y)
+});
+const $f_s_math_Numeric$IntIsIntegral__plus__I__I__I = (function($thiz, x, y) {
+  return ((x + y) | 0)
+});
 class $c_s_math_Ordering$Int$ extends $c_O {
   constructor() {
     super();
@@ -15051,9 +15197,6 @@ class $c_s_math_Ordering$Int$ extends $c_O {
   };
   lt__O__O__Z(x, y) {
     return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
-  };
-  gt__O__O__Z(x, y) {
-    return $f_s_math_Ordering__gt__O__O__Z(this, x, y)
   };
   compare__O__O__I(x, y) {
     const x$1 = $uI(x);
@@ -15722,8 +15865,14 @@ class $c_sc_SeqView$Sorted extends $c_O {
   exists__F1__Z(p) {
     return $f_sc_IterableOnceOps__exists__F1__Z(this, p)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -15769,6 +15918,9 @@ class $c_sc_SeqView$Sorted extends $c_O {
   };
   drop__I__O(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
+  };
+  map__F1__O(f) {
+    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
   };
   sorted__s_math_Ordering__O(ord) {
     return this.sorted__s_math_Ordering__sc_SeqView(ord)
@@ -15852,8 +16004,14 @@ class $c_sc_SeqView$Sorted$ReverseSorted extends $c_O {
   exists__F1__Z(p) {
     return $f_sc_IterableOnceOps__exists__F1__Z(this, p)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -15892,6 +16050,9 @@ class $c_sc_SeqView$Sorted$ReverseSorted extends $c_O {
   };
   drop__I__O(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
+  };
+  map__F1__O(f) {
+    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
   };
   sorted__s_math_Ordering__O(ord) {
     return this.sorted__s_math_Ordering__sc_SeqView(ord)
@@ -16133,6 +16294,112 @@ const $d_sc_View$ZipWithIndex = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_sc_View$ZipWithIndex.prototype.$classData = $d_sc_View$ZipWithIndex;
+class $c_s_math_Numeric$DoubleIsFractional$ extends $c_O {
+  isReverseOf__s_math_Ordering__Z(other) {
+    return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+  };
+  toInt__O__I(x) {
+    const x$1 = $uD(x);
+    return $doubleToInt(x$1)
+  };
+  fromInt__I__O(x) {
+    return x
+  };
+  plus__O__O__O(x, y) {
+    const x$1 = $uD(x);
+    const y$1 = $uD(y);
+    return $f_s_math_Numeric$DoubleIsFractional__plus__D__D__D(this, x$1, y$1)
+  };
+  lt__O__O__Z(x, y) {
+    const x$1 = $uD(x);
+    const y$1 = $uD(y);
+    return $f_s_math_Ordering$Double$IeeeOrdering__lt__D__D__Z(this, x$1, y$1)
+  };
+  lteq__O__O__Z(x, y) {
+    const x$1 = $uD(x);
+    const y$1 = $uD(y);
+    return $f_s_math_Ordering$Double$IeeeOrdering__lteq__D__D__Z(this, x$1, y$1)
+  };
+  compare__O__O__I(x, y) {
+    const x$1 = $uD(x);
+    const y$1 = $uD(y);
+    return $m_jl_Double$().compare__D__D__I(x$1, y$1)
+  };
+}
+const $d_s_math_Numeric$DoubleIsFractional$ = new $TypeData().initClass({
+  s_math_Numeric$DoubleIsFractional$: 0
+}, false, "scala.math.Numeric$DoubleIsFractional$", {
+  s_math_Numeric$DoubleIsFractional$: 1,
+  O: 1,
+  s_math_Numeric$DoubleIsFractional: 1,
+  s_math_Fractional: 1,
+  s_math_Numeric: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1,
+  s_math_Ordering$Double$IeeeOrdering: 1
+});
+$c_s_math_Numeric$DoubleIsFractional$.prototype.$classData = $d_s_math_Numeric$DoubleIsFractional$;
+let $n_s_math_Numeric$DoubleIsFractional$ = (void 0);
+function $m_s_math_Numeric$DoubleIsFractional$() {
+  if ((!$n_s_math_Numeric$DoubleIsFractional$)) {
+    $n_s_math_Numeric$DoubleIsFractional$ = new $c_s_math_Numeric$DoubleIsFractional$()
+  };
+  return $n_s_math_Numeric$DoubleIsFractional$
+}
+class $c_s_math_Numeric$IntIsIntegral$ extends $c_O {
+  lteq__O__O__Z(x, y) {
+    return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+  };
+  lt__O__O__Z(x, y) {
+    return $f_s_math_Ordering__lt__O__O__Z(this, x, y)
+  };
+  isReverseOf__s_math_Ordering__Z(other) {
+    return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+  };
+  toInt__O__I(x) {
+    const x$1 = $uI(x);
+    return x$1
+  };
+  fromInt__I__O(x) {
+    return x
+  };
+  plus__O__O__O(x, y) {
+    const x$1 = $uI(x);
+    const y$1 = $uI(y);
+    return $f_s_math_Numeric$IntIsIntegral__plus__I__I__I(this, x$1, y$1)
+  };
+  compare__O__O__I(x, y) {
+    const x$1 = $uI(x);
+    const y$1 = $uI(y);
+    return ((x$1 === y$1) ? 0 : ((x$1 < y$1) ? (-1) : 1))
+  };
+}
+const $d_s_math_Numeric$IntIsIntegral$ = new $TypeData().initClass({
+  s_math_Numeric$IntIsIntegral$: 0
+}, false, "scala.math.Numeric$IntIsIntegral$", {
+  s_math_Numeric$IntIsIntegral$: 1,
+  O: 1,
+  s_math_Numeric$IntIsIntegral: 1,
+  s_math_Integral: 1,
+  s_math_Numeric: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1,
+  s_math_Ordering$IntOrdering: 1
+});
+$c_s_math_Numeric$IntIsIntegral$.prototype.$classData = $d_s_math_Numeric$IntIsIntegral$;
+let $n_s_math_Numeric$IntIsIntegral$ = (void 0);
+function $m_s_math_Numeric$IntIsIntegral$() {
+  if ((!$n_s_math_Numeric$IntIsIntegral$)) {
+    $n_s_math_Numeric$IntIsIntegral$ = new $c_s_math_Numeric$IntIsIntegral$()
+  };
+  return $n_s_math_Numeric$IntIsIntegral$
+}
 class $c_sc_AbstractSet extends $c_sc_AbstractIterable {
   equals__O__Z(that) {
     return $f_sc_Set__equals__O__Z(this, that)
@@ -16237,6 +16504,9 @@ class $c_sc_AbstractSeq extends $c_sc_AbstractIterable {
   };
 }
 class $c_sc_AbstractSeqView extends $c_sc_AbstractView {
+  map__F1__sc_SeqView(f) {
+    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
+  };
   drop__I__sc_SeqView(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
   };
@@ -16264,6 +16534,9 @@ class $c_sc_AbstractSeqView extends $c_sc_AbstractView {
   };
   drop__I__O(n) {
     return this.drop__I__sc_SeqView(n)
+  };
+  map__F1__O(f) {
+    return this.map__F1__sc_SeqView(f)
   };
 }
 function $is_sc_IndexedSeq(obj) {
@@ -16348,6 +16621,9 @@ class $c_sc_SeqView$Drop extends $c_sc_View$Drop {
     super();
     this.sc_SeqView$Drop__f_underlying = null
   };
+  map__F1__sc_SeqView(f) {
+    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
+  };
   drop__I__sc_SeqView(n) {
     return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
   };
@@ -16383,6 +16659,9 @@ class $c_sc_SeqView$Drop extends $c_sc_View$Drop {
   };
   drop__I__O(n) {
     return this.drop__I__sc_SeqView(n)
+  };
+  map__F1__O(f) {
+    return this.map__F1__sc_SeqView(f)
   };
 }
 const $d_sc_SeqView$Drop = new $TypeData().initClass({
@@ -16460,9 +16739,24 @@ class $c_sc_SeqView$Map extends $c_sc_View$Map {
     this.sc_SeqView$Map__f_underlying = null;
     this.sc_SeqView$Map__f_f = null
   };
+  map__F1__sc_SeqView(f) {
+    return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
+  };
+  drop__I__sc_SeqView(n) {
+    return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
+  };
+  stringPrefix__T() {
+    return "SeqView"
+  };
+  reverseIterator__sc_Iterator() {
+    return this.reversed__sc_Iterable().iterator__sc_Iterator()
+  };
   indexWhere__F1__I__I(p, from) {
     const this$1 = this.iterator__sc_Iterator();
     return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
+  };
+  lengthCompare__I__I(len) {
+    return $f_sc_IterableOps__sizeCompare__I__I(this, len)
   };
   isEmpty__Z() {
     return $f_sc_SeqOps__isEmpty__Z(this)
@@ -16479,7 +16773,32 @@ class $c_sc_SeqView$Map extends $c_sc_View$Map {
   sorted__s_math_Ordering__O(ord) {
     return new $c_sc_SeqView$Sorted(this, ord)
   };
+  drop__I__O(n) {
+    return this.drop__I__sc_SeqView(n)
+  };
+  map__F1__O(f) {
+    return this.map__F1__sc_SeqView(f)
+  };
 }
+const $d_sc_SeqView$Map = new $TypeData().initClass({
+  sc_SeqView$Map: 0
+}, false, "scala.collection.SeqView$Map", {
+  sc_SeqView$Map: 1,
+  sc_View$Map: 1,
+  sc_AbstractView: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_View: 1,
+  Ljava_io_Serializable: 1,
+  sc_SeqView: 1,
+  sc_SeqOps: 1
+});
+$c_sc_SeqView$Map.prototype.$classData = $d_sc_SeqView$Map;
 const $ct_sc_SeqView$Reverse__sc_SeqOps__ = (function($thiz, underlying) {
   $thiz.sc_SeqView$Reverse__f_underlying = underlying;
   return $thiz
@@ -16590,6 +16909,12 @@ class $c_sc_AbstractIndexedSeqView extends $c_sc_AbstractSeqView {
   knownSize__I() {
     return this.length__I()
   };
+  map__F1__sc_SeqView(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
+  map__F1__O(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
   };
@@ -16625,6 +16950,12 @@ class $c_sc_IndexedSeqView$Drop extends $c_sc_SeqView$Drop {
   };
   knownSize__I() {
     return this.length__I()
+  };
+  map__F1__sc_SeqView(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
+  map__F1__O(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
   };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
@@ -16679,6 +17010,12 @@ class $c_sc_IndexedSeqView$Id extends $c_sc_SeqView$Id {
   knownSize__I() {
     return this.length__I()
   };
+  map__F1__sc_SeqView(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
+  map__F1__O(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
   };
@@ -16722,12 +17059,24 @@ class $c_sc_IndexedSeqView$Map extends $c_sc_SeqView$Map {
   stringPrefix__T() {
     return "IndexedSeqView"
   };
+  reversed__sc_Iterable() {
+    return new $c_sc_IndexedSeqView$Reverse(this)
+  };
   lengthCompare__I__I(len) {
     const x = this.length__I();
     return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
   };
   knownSize__I() {
     return this.length__I()
+  };
+  map__F1__sc_SeqView(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
+  map__F1__O(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
+  drop__I__sc_SeqView(n) {
+    return new $c_sc_IndexedSeqView$Drop(this, n)
   };
   drop__I__O(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
@@ -16780,6 +17129,12 @@ class $c_sc_IndexedSeqView$Reverse extends $c_sc_SeqView$Reverse {
   };
   knownSize__I() {
     return this.length__I()
+  };
+  map__F1__sc_SeqView(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
+  };
+  map__F1__O(f) {
+    return new $c_sc_IndexedSeqView$Map(this, f)
   };
   drop__I__sc_SeqView(n) {
     return new $c_sc_IndexedSeqView$Drop(this, n)
@@ -17070,6 +17425,9 @@ class $c_sci_Set$Set1 extends $c_sci_AbstractSet {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
+  };
   size__I() {
     return 1
   };
@@ -17140,6 +17498,9 @@ class $c_sci_Set$Set2 extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 2
@@ -17220,6 +17581,9 @@ class $c_sci_Set$Set3 extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 3
@@ -17305,6 +17669,9 @@ class $c_sci_Set$Set4 extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 4
@@ -17494,6 +17861,9 @@ class $c_sci_Map$Map1 extends $c_sci_AbstractMap {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
+  };
   size__I() {
     return 1
   };
@@ -17574,6 +17944,9 @@ class $c_sci_Map$Map2 extends $c_sci_AbstractMap {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 2
@@ -17660,6 +18033,9 @@ class $c_sci_Map$Map3 extends $c_sci_AbstractMap {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 3
@@ -17753,6 +18129,9 @@ class $c_sci_Map$Map4 extends $c_sci_AbstractMap {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return 4
@@ -17876,6 +18255,9 @@ class $c_sci_HashSet extends $c_sci_AbstractSet {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   iterableFactory__sc_IterableFactory() {
     return $m_sci_HashSet$()
@@ -18192,6 +18574,22 @@ class $c_sci_LazyList extends $c_sci_AbstractSeq {
   equals__O__Z(that) {
     return ((this === that) || $f_sc_Seq__equals__O__Z(this, that))
   };
+  reduceLeft__F2__O(f) {
+    if (this.isEmpty__Z()) {
+      throw $ct_jl_UnsupportedOperationException__T__(new $c_jl_UnsupportedOperationException(), "empty.reduceLeft")
+    } else {
+      let reducedRes = this.scala$collection$immutable$LazyList$$state__sci_LazyList$State().head__O();
+      let left = this.scala$collection$immutable$LazyList$$state__sci_LazyList$State().tail__sci_LazyList();
+      while ((!left.isEmpty__Z())) {
+        const $$x1 = reducedRes;
+        const this$1 = left;
+        reducedRes = f.apply__O__O__O($$x1, this$1.scala$collection$immutable$LazyList$$state__sci_LazyList$State().head__O());
+        const this$2 = left;
+        left = this$2.scala$collection$immutable$LazyList$$state__sci_LazyList$State().tail__sci_LazyList()
+      };
+      return reducedRes
+    }
+  };
   map__F1__sci_LazyList(f) {
     return ((this.sci_LazyList__f_scala$collection$immutable$LazyList$$stateEvaluated && this.isEmpty__Z()) ? $m_sci_LazyList$().sci_LazyList$__f__empty : $p_sci_LazyList__mapImpl__F1__sci_LazyList(this, f))
   };
@@ -18384,6 +18782,19 @@ class $c_sci_Stream extends $c_sci_AbstractSeq {
   };
   equals__O__Z(that) {
     return ((this === that) || $f_sc_Seq__equals__O__Z(this, that))
+  };
+  reduceLeft__F2__O(f) {
+    if (this.isEmpty__Z()) {
+      throw $ct_jl_UnsupportedOperationException__T__(new $c_jl_UnsupportedOperationException(), "empty.reduceLeft")
+    } else {
+      let reducedRes = this.head__O();
+      let left = $as_sci_Stream(this.tail__O());
+      while ((!left.isEmpty__Z())) {
+        reducedRes = f.apply__O__O__O(reducedRes, left.head__O());
+        left = $as_sci_Stream(left.tail__O())
+      };
+      return reducedRes
+    }
   };
   map__F1__sci_Stream(f) {
     if (this.isEmpty__Z()) {
@@ -18647,8 +19058,14 @@ class $c_sjsr_WrappedVarArgs extends $c_O {
   exists__F1__Z(p) {
     return $f_sc_IterableOnceOps__exists__F1__Z(this, p)
   };
+  reduceLeft__F2__O(op) {
+    return $f_sc_IterableOnceOps__reduceLeft__F2__O(this, op)
+  };
   copyToArray__O__I__I(xs, start) {
     return $f_sc_IterableOnceOps__copyToArray__O__I__I(this, xs, start)
+  };
+  sum__s_math_Numeric__O(num) {
+    return $f_sc_IterableOnceOps__sum__s_math_Numeric__O(this, num)
   };
   addString__scm_StringBuilder__T__T__T__scm_StringBuilder(b, start, sep, end) {
     return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
@@ -18724,6 +19141,9 @@ class $c_sci_HashMap extends $c_sci_AbstractMap {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   mapFactory__sc_MapFactory() {
     return $m_sci_HashMap$()
@@ -19233,6 +19653,49 @@ class $c_sci_Range extends $c_sci_AbstractSeq {
   reverse__sci_Range() {
     return (this.sci_Range__f_isEmpty ? this : new $c_sci_Range$Inclusive(this.last__I(), this.sci_Range__f_start, ((-this.sci_Range__f_step) | 0)))
   };
+  sum__s_math_Numeric__I(num) {
+    if ((num === $m_s_math_Numeric$IntIsIntegral$())) {
+      if (this.sci_Range__f_isEmpty) {
+        return 0
+      } else if ((this.length__I() === 1)) {
+        return this.head__I()
+      } else {
+        const value = this.length__I();
+        const hi = (value >> 31);
+        const value$1 = this.head__I();
+        const hi$1 = (value$1 >> 31);
+        const value$2 = this.last__I();
+        const hi$2 = (value$2 >> 31);
+        const lo = ((value$1 + value$2) | 0);
+        const hi$3 = ((((-2147483648) ^ lo) < ((-2147483648) ^ value$1)) ? ((1 + ((hi$1 + hi$2) | 0)) | 0) : ((hi$1 + hi$2) | 0));
+        const a0 = (65535 & value);
+        const a1 = ((value >>> 16) | 0);
+        const b0 = (65535 & lo);
+        const b1 = ((lo >>> 16) | 0);
+        const a0b0 = $imul(a0, b0);
+        const a1b0 = $imul(a1, b0);
+        const a0b1 = $imul(a0, b1);
+        const lo$1 = ((a0b0 + (((a1b0 + a0b1) | 0) << 16)) | 0);
+        const c1part = ((((a0b0 >>> 16) | 0) + a0b1) | 0);
+        const hi$4 = (((((((($imul(value, hi$3) + $imul(hi, lo)) | 0) + $imul(a1, b1)) | 0) + ((c1part >>> 16) | 0)) | 0) + (((((65535 & c1part) + a1b0) | 0) >>> 16) | 0)) | 0);
+        const this$5 = $m_RTLong$();
+        const lo$2 = this$5.divideImpl__I__I__I__I__I(lo$1, hi$4, 2, 0);
+        return lo$2
+      }
+    } else if (this.sci_Range__f_isEmpty) {
+      return num.toInt__O__I(num.fromInt__I__O(0))
+    } else {
+      let acc = num.fromInt__I__O(0);
+      let i = this.head__I();
+      while (true) {
+        acc = num.plus__O__O__O(acc, i);
+        if ((i === this.sci_Range__f_scala$collection$immutable$Range$$lastElement)) {
+          return num.toInt__O__I(acc)
+        };
+        i = ((i + this.sci_Range__f_step) | 0)
+      }
+    }
+  };
   applyPreferredMaxLength__I() {
     return 2147483647
   };
@@ -19287,6 +19750,9 @@ class $c_sci_Range extends $c_sci_AbstractSeq {
   };
   sorted__s_math_Ordering__O(ord) {
     return this.sorted__s_math_Ordering__sci_IndexedSeq(ord)
+  };
+  sum__s_math_Numeric__O(num) {
+    return this.sum__s_math_Numeric__I(num)
   };
   drop__I__O(n) {
     return this.drop__I__sci_Range(n)
@@ -22310,6 +22776,9 @@ class $c_scm_HashMap extends $c_scm_AbstractMap {
   };
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
+  };
+  map__F1__O(f) {
+    return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
   };
   size__I() {
     return this.scm_HashMap__f_contentSize

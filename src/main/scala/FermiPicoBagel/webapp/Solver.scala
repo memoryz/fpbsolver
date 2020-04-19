@@ -82,6 +82,8 @@ object Solver {
     }
   }
 
+  private val log2: Double=>Double = math.log(_) / math.log(2)
+
   private def generateHint(candidates: List[String]): String = {
     val lowerDiagonal = generateLowerDiagonalMatrix(candidates)
 
@@ -106,11 +108,13 @@ object Solver {
     // group by guess
     val bestOfWorst = allResponse.groupBy(_._1).map {
       case (guess, responseGroup) =>
-        // group by response
-        val worstCase = responseGroup.groupBy(_._3)
-          // get the worst case size
-          .maxBy(_._2.size)
-        (guess, worstCase._2.size)
+        // group by response, and get each subgroup's size
+        val cost = responseGroup
+          .groupBy(_._3)
+          .map(_._2.size)
+          .map(s => s * log2(s))
+          .sum
+        (guess, cost)
     }.minBy(_._2)
 
     bestOfWorst._1
