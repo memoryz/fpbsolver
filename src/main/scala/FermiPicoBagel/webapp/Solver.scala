@@ -5,6 +5,8 @@ import scala.util.Random
 
 class Solver(nDigits: Int, allowDuplicates: Boolean, allowZero: Boolean, allowLeadingZero: Boolean) {
 
+  import Solver._
+
   var candidates: List[String] = _
 
   def initialize(): this.type = {
@@ -30,7 +32,7 @@ class Solver(nDigits: Int, allowDuplicates: Boolean, allowZero: Boolean, allowLe
 
   def getHint(implicit random: Random): String = {
     val hint = if (candidates.length <= 1000) {
-      generateHint
+      generateHint(candidates)
     } else {
       candidates(random.nextInt(candidates.length))
     }
@@ -52,50 +54,65 @@ class Solver(nDigits: Int, allowDuplicates: Boolean, allowZero: Boolean, allowLe
     if (response.length == nDigits) response
     else response + Seq.fill(nDigits - response.length)('B').mkString
   }
+}
+
+object Solver {
+  implicit val random: Random = new Random()
 
   private def responseMatch(r1: String, r2: String): Boolean = {
     r1.toLowerCase.toSeq.sorted == r2.toLowerCase.toSeq.sorted
   }
 
-  private def calcResponse(candidate:String, guess: String): String = {
-    val g = guess
-
-    val f = candidate.zipWithIndex.intersect(g.zipWithIndex).length
-    val p = candidate.toSeq.intersect(g).length - f
-    val b = nDigits - f - p
+  private def calcResponse(candidate: String, guess: String): String = {
+    val n = candidate.length
+    val f = candidate.zipWithIndex.intersect(guess.zipWithIndex).length
+    val p = candidate.toSeq.intersect(guess).length - f
+    val b = n - f - p
 
     (1 to f).map(_ => 'F').mkString("") + (1 to p).map(_ => 'P').mkString("") + (1 to b).map(_ => 'B').mkString("")
   }
 
-  private def generateMatrix: List[(String, String)] = {
+  private def generateLowerDiagonalMatrix(candidates: List[String]): List[(String, String)] = {
     candidates flatMap {
       c1 =>
-        candidates map {
+        candidates filter (_ < c1) map {
           c2 =>
             (c1, c2)
         }
     }
   }
 
-  private def generateHint: String = {
-    val all = generateMatrix
+  private def generateHint(candidates: List[String]): String = {
+    val lowerDiagonal = generateLowerDiagonalMatrix(candidates)
 
-    // (guess, candidate)
-    val bestOfWorst = (all.groupBy(_._1) map {
-      case (g, comb) =>
-        val worstCase: (String, List[((String, String), String)]) = comb.map {
-          case (guess, candidate) =>
-            val response = calcResponse(candidate, guess)
-            ((guess, candidate), response)
-        }.groupBy(_._2).maxBy(_._2.size)
+    val responseLD = lowerDiagonal map {
+      case (guess, candidate) =>
+        val response = calcResponse(candidate, guess)
+        (guess, candidate, response)
+    }
 
-        (g, worstCase._2.size)
-    }).minBy(_._2)
+    val responseUD = responseLD map {
+      case (guess, candidate, response) =>
+        (candidate, guess, response)
+    }
+
+    val diagonal = candidates map {
+      c => (c, c, "FFFF")
+    }
+
+    val allResponse = responseLD ++ responseUD ++ diagonal
+
+    // (guess, candidate, response)
+    // group by guess
+    val bestOfWorst = allResponse.groupBy(_._1).map {
+      case (guess, responseGroup) =>
+        // group by response
+        val worstCase = responseGroup.groupBy(_._3)
+          // get the worst case size
+          .maxBy(_._2.size)
+        (guess, worstCase._2.size)
+    }.minBy(_._2)
 
     bestOfWorst._1
   }
-}
-
-object Solver {
-  implicit val random: Random = new Random()
 }

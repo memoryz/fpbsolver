@@ -698,6 +698,11 @@ const $d_O = new $TypeData().initClass({
   O: 1
 }, (void 0), (void 0), $is_O, $isArrayOf_O);
 $c_O.prototype.$classData = $d_O;
+const $s_LFermiPicoBagel_webapp_App__main__AT__V = (function(args) {
+  const this$3 = $m_s_Console$();
+  const this$4 = this$3.out__Ljava_io_PrintStream();
+  this$4.java$lang$JSConsoleBasedPrintStream$$printString__T__V("Fermi Pico Bagel\n")
+});
 const $p_LFermiPicoBagel_webapp_Dom$__getNoSolutionAlert__Lorg_scalajs_dom_raw_HTMLDivElement = (function($thiz) {
   return $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("no-solution")
 });
@@ -873,251 +878,6 @@ const $p_LFermiPicoBagel_webapp_Solver__formatResponse__T__T = (function($thiz, 
     return (("" + response) + $f_sc_IterableOnceOps__mkString__T__T__T__T(this$3, "", "", ""))
   }
 });
-const $p_LFermiPicoBagel_webapp_Solver__responseMatch__T__T__Z = (function($thiz, r1, r2) {
-  const this$1 = $m_s_Predef$().wrapString__T__sci_WrappedString($as_T(r1.toLowerCase()));
-  const ord = $m_s_math_Ordering$Char$();
-  const x = $f_sc_SeqOps__sorted__s_math_Ordering__O(this$1, ord);
-  const this$2 = $m_s_Predef$().wrapString__T__sci_WrappedString($as_T(r2.toLowerCase()));
-  const ord$1 = $m_s_math_Ordering$Char$();
-  const y = $f_sc_SeqOps__sorted__s_math_Ordering__O(this$2, ord$1);
-  return $m_sr_BoxesRunTime$().equals__O__O__Z(x, y)
-});
-const $p_LFermiPicoBagel_webapp_Solver__calcResponse__T__T__T = (function($thiz, candidate, guess) {
-  const this$1 = $m_s_Predef$().wrapString__T__sci_WrappedString(candidate);
-  const $$x1 = $as_sc_SeqOps($f_sc_IterableOps__zipWithIndex__O(this$1));
-  const this$2 = $m_s_Predef$().wrapString__T__sci_WrappedString(guess);
-  const f = $as_sc_SeqOps($$x1.intersect__sc_Seq__O($as_sc_Seq($f_sc_IterableOps__zipWithIndex__O(this$2)))).length__I();
-  const this$3 = $m_s_Predef$().wrapString__T__sci_WrappedString(candidate);
-  const that = $m_s_Predef$().wrapString__T__sci_WrappedString(guess);
-  const this$4 = $as_sci_WrappedString($f_sc_SeqOps__intersect__sc_Seq__O(this$3, that));
-  const this$5 = this$4.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self;
-  const p = (($uI(this$5.length) - f) | 0);
-  const b = (((($thiz.LFermiPicoBagel_webapp_Solver__f_nDigits - f) | 0) - p) | 0);
-  const isEmpty = (f < 1);
-  let scala$collection$immutable$Range$$numRangeElements;
-  if (isEmpty) {
-    scala$collection$immutable$Range$$numRangeElements = 0
-  } else {
-    const hi = (f >> 31);
-    const lo = (((-1) + f) | 0);
-    const hi$1 = ((lo !== (-1)) ? hi : (((-1) + hi) | 0));
-    const lo$1 = ((1 + lo) | 0);
-    const hi$2 = ((lo$1 === 0) ? ((1 + hi$1) | 0) : hi$1);
-    scala$collection$immutable$Range$$numRangeElements = (((hi$2 === 0) ? (((-2147483648) ^ lo$1) > (-1)) : (hi$2 > 0)) ? (-1) : lo$1)
-  };
-  if ((scala$collection$immutable$Range$$numRangeElements < 0)) {
-    $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__E(1, f, 1, true)
-  };
-  const b$1 = $m_sci_IndexedSeq$().newBuilder__scm_Builder();
-  const it = new $c_sci_RangeIterator(1, 1, f, isEmpty);
-  while (it.sci_RangeIterator__f__hasNext) {
-    it.next__I();
-    const elem = 70;
-    b$1.addOne__O__scm_Growable($bC(elem))
-  };
-  const this$12 = $as_sci_IndexedSeq(b$1.result__O());
-  const $$x3 = $f_sc_IterableOnceOps__mkString__T__T__T__T(this$12, "", "", "");
-  const isEmpty$1 = (p < 1);
-  let scala$collection$immutable$Range$$numRangeElements$1;
-  if (isEmpty$1) {
-    scala$collection$immutable$Range$$numRangeElements$1 = 0
-  } else {
-    const hi$3 = (p >> 31);
-    const lo$2 = (((-1) + p) | 0);
-    const hi$4 = ((lo$2 !== (-1)) ? hi$3 : (((-1) + hi$3) | 0));
-    const lo$3 = ((1 + lo$2) | 0);
-    const hi$5 = ((lo$3 === 0) ? ((1 + hi$4) | 0) : hi$4);
-    scala$collection$immutable$Range$$numRangeElements$1 = (((hi$5 === 0) ? (((-2147483648) ^ lo$3) > (-1)) : (hi$5 > 0)) ? (-1) : lo$3)
-  };
-  if ((scala$collection$immutable$Range$$numRangeElements$1 < 0)) {
-    $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__E(1, p, 1, true)
-  };
-  const b$2 = $m_sci_IndexedSeq$().newBuilder__scm_Builder();
-  const it$1 = new $c_sci_RangeIterator(1, 1, p, isEmpty$1);
-  while (it$1.sci_RangeIterator__f__hasNext) {
-    it$1.next__I();
-    const elem$1 = 80;
-    b$2.addOne__O__scm_Growable($bC(elem$1))
-  };
-  const this$19 = $as_sci_IndexedSeq(b$2.result__O());
-  const $$x2 = $f_sc_IterableOnceOps__mkString__T__T__T__T(this$19, "", "", "");
-  const isEmpty$2 = (b < 1);
-  let scala$collection$immutable$Range$$numRangeElements$2;
-  if (isEmpty$2) {
-    scala$collection$immutable$Range$$numRangeElements$2 = 0
-  } else {
-    const hi$6 = (b >> 31);
-    const lo$4 = (((-1) + b) | 0);
-    const hi$7 = ((lo$4 !== (-1)) ? hi$6 : (((-1) + hi$6) | 0));
-    const lo$5 = ((1 + lo$4) | 0);
-    const hi$8 = ((lo$5 === 0) ? ((1 + hi$7) | 0) : hi$7);
-    scala$collection$immutable$Range$$numRangeElements$2 = (((hi$8 === 0) ? (((-2147483648) ^ lo$5) > (-1)) : (hi$8 > 0)) ? (-1) : lo$5)
-  };
-  if ((scala$collection$immutable$Range$$numRangeElements$2 < 0)) {
-    $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__E(1, b, 1, true)
-  };
-  const b$3 = $m_sci_IndexedSeq$().newBuilder__scm_Builder();
-  const it$2 = new $c_sci_RangeIterator(1, 1, b, isEmpty$2);
-  while (it$2.sci_RangeIterator__f__hasNext) {
-    it$2.next__I();
-    const elem$2 = 66;
-    b$3.addOne__O__scm_Growable($bC(elem$2))
-  };
-  const this$26 = $as_sci_IndexedSeq(b$3.result__O());
-  return ((("" + $$x3) + $$x2) + $f_sc_IterableOnceOps__mkString__T__T__T__T(this$26, "", "", ""))
-});
-const $p_LFermiPicoBagel_webapp_Solver__generateMatrix__sci_List = (function($thiz) {
-  const this$1 = $thiz.LFermiPicoBagel_webapp_Solver__f_candidates;
-  let rest = this$1;
-  let h = null;
-  let t = null;
-  while ((rest !== $m_sci_Nil$())) {
-    const arg1 = rest.head__O();
-    const c1 = $as_T(arg1);
-    const this$3 = $thiz.LFermiPicoBagel_webapp_Solver__f_candidates;
-    const f = ((this$2, c1$1) => ((c2$2) => {
-      const c2 = $as_T(c2$2);
-      return new $c_T2(c1$1, c2)
-    }))($thiz, c1);
-    let $$x1;
-    if ((this$3 === $m_sci_Nil$())) {
-      $$x1 = $m_sci_Nil$()
-    } else {
-      const arg1$1 = this$3.head__O();
-      const h$1 = new $c_sci_$colon$colon(f(arg1$1), $m_sci_Nil$());
-      let t$1 = h$1;
-      let rest$1 = $as_sci_List(this$3.tail__O());
-      while ((rest$1 !== $m_sci_Nil$())) {
-        const arg1$2 = rest$1.head__O();
-        const nx = new $c_sci_$colon$colon(f(arg1$2), $m_sci_Nil$());
-        t$1.sci_$colon$colon__f_next = nx;
-        t$1 = nx;
-        rest$1 = $as_sci_List(rest$1.tail__O())
-      };
-      $$x1 = h$1
-    };
-    const it = $$x1.iterator__sc_Iterator();
-    while (it.hasNext__Z()) {
-      const nx$1 = new $c_sci_$colon$colon(it.next__O(), $m_sci_Nil$());
-      if ((t === null)) {
-        h = nx$1
-      } else {
-        t.sci_$colon$colon__f_next = nx$1
-      };
-      t = nx$1
-    };
-    rest = $as_sci_List(rest.tail__O())
-  };
-  return ((h === null) ? $m_sci_Nil$() : h)
-});
-const $p_LFermiPicoBagel_webapp_Solver__generateHint__T = (function($thiz) {
-  const all = $p_LFermiPicoBagel_webapp_Solver__generateMatrix__sci_List($thiz);
-  const m = $as_scm_Map($m_scm_Map$().empty__O());
-  const it = all.iterator__sc_Iterator();
-  while (it.hasNext__Z()) {
-    const elem = it.next__O();
-    const x$7 = $as_T2(elem);
-    const key = $as_T(x$7.T2__f__1);
-    const bldr = $as_scm_Builder(m.getOrElseUpdate__O__F0__O(key, new $c_sjsr_AnonFunction0(((this$1) => (() => this$1.newSpecificBuilder__scm_Builder()))(all))));
-    bldr.addOne__O__scm_Growable(elem)
-  };
-  const this$2 = $m_sci_HashMap$();
-  let result = this$2.sci_HashMap$__f_EmptyMap;
-  const mapIt = m.iterator__sc_Iterator();
-  while (mapIt.hasNext__Z()) {
-    const x1 = $as_T2(mapIt.next__O());
-    if ((x1 === null)) {
-      throw new $c_s_MatchError(x1)
-    };
-    const k = x1.T2__f__1;
-    const v = $as_scm_Builder(x1.T2__f__2);
-    result = result.updated__O__O__sci_HashMap(k, v.result__O())
-  };
-  const this$3 = result;
-  $m_sci_HashMap$();
-  const b = new $c_sci_HashMapBuilder();
-  const it$1 = this$3.iterator__sc_Iterator();
-  while (it$1.hasNext__Z()) {
-    const arg1 = it$1.next__O();
-    const x0$1 = $as_T2(arg1);
-    if ((x0$1 === null)) {
-      throw new $c_s_MatchError(x0$1)
-    };
-    const g = $as_T(x0$1.T2__f__1);
-    const comb = $as_sci_List(x0$1.T2__f__2);
-    const f = ((this$5) => ((x0$2$2) => {
-      const x0$2 = $as_T2(x0$2$2);
-      if ((x0$2 !== null)) {
-        const guess = $as_T(x0$2.T2__f__1);
-        const candidate = $as_T(x0$2.T2__f__2);
-        const response = $p_LFermiPicoBagel_webapp_Solver__calcResponse__T__T__T(this$5, candidate, guess);
-        return new $c_T2(new $c_T2(guess, candidate), response)
-      } else {
-        throw new $c_s_MatchError(x0$2)
-      }
-    }))($thiz);
-    let this$6;
-    if ((comb === $m_sci_Nil$())) {
-      this$6 = $m_sci_Nil$()
-    } else {
-      const arg1$1 = comb.head__O();
-      const h = new $c_sci_$colon$colon(f(arg1$1), $m_sci_Nil$());
-      let t = h;
-      let rest = $as_sci_List(comb.tail__O());
-      while ((rest !== $m_sci_Nil$())) {
-        const arg1$2 = rest.head__O();
-        const nx = new $c_sci_$colon$colon(f(arg1$2), $m_sci_Nil$());
-        t.sci_$colon$colon__f_next = nx;
-        t = nx;
-        rest = $as_sci_List(rest.tail__O())
-      };
-      this$6 = h
-    };
-    const m$1 = $as_scm_Map($m_scm_Map$().empty__O());
-    const it$2 = this$6.iterator__sc_Iterator();
-    while (it$2.hasNext__Z()) {
-      const elem$1 = it$2.next__O();
-      const x$8 = $as_T2(elem$1);
-      const key$1 = $as_T(x$8.T2__f__2);
-      const bldr$1 = $as_scm_Builder(m$1.getOrElseUpdate__O__F0__O(key$1, new $c_sjsr_AnonFunction0(((this$7) => (() => this$7.newSpecificBuilder__scm_Builder()))(this$6))));
-      bldr$1.addOne__O__scm_Growable(elem$1)
-    };
-    const this$8 = $m_sci_HashMap$();
-    let result$1 = this$8.sci_HashMap$__f_EmptyMap;
-    const mapIt$1 = m$1.iterator__sc_Iterator();
-    while (mapIt$1.hasNext__Z()) {
-      const x1$1 = $as_T2(mapIt$1.next__O());
-      if ((x1$1 === null)) {
-        throw new $c_s_MatchError(x1$1)
-      };
-      const k$1 = x1$1.T2__f__1;
-      const v$1 = $as_scm_Builder(x1$1.T2__f__2);
-      result$1 = result$1.updated__O__O__sci_HashMap(k$1, v$1.result__O())
-    };
-    const this$10 = result$1;
-    const f$1 = new $c_sjsr_AnonFunction1(((this$3$1) => ((x$9$2) => {
-      const x$9 = $as_T2(x$9$2);
-      const this$9 = $as_sc_SeqOps(x$9.T2__f__2);
-      return this$9.length__I()
-    }))($thiz));
-    const cmp = $m_s_math_Ordering$Int$();
-    const worstCase = $as_T2($f_sc_IterableOnceOps__maxBy__F1__s_math_Ordering__O(this$10, f$1, cmp));
-    const this$11 = $as_sc_SeqOps(worstCase.T2__f__2);
-    const _2 = this$11.length__I();
-    $p_sci_HashMapBuilder__ensureUnaliased__V(b);
-    const h$1 = $m_sr_Statics$().anyHash__O__I(g);
-    const im = $m_sc_Hashing$().improve__I__I(h$1);
-    b.update__sci_MapNode__O__O__I__I__I__V(b.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, g, _2, h$1, im, 0)
-  };
-  const this$12 = b.result__sci_HashMap();
-  const f$2 = new $c_sjsr_AnonFunction1(((this$3$2) => ((x$10$2) => {
-    const x$10 = $as_T2(x$10$2);
-    return $uI(x$10.T2__f__2)
-  }))($thiz));
-  const cmp$1 = $m_s_math_Ordering$Int$();
-  const bestOfWorst = $as_T2($f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O(this$12, f$2, cmp$1));
-  return $as_T(bestOfWorst.T2__f__1)
-});
 class $c_LFermiPicoBagel_webapp_Solver extends $c_O {
   constructor(nDigits, allowDuplicates, allowZero, allowLeadingZero) {
     super();
@@ -1188,7 +948,7 @@ class $c_LFermiPicoBagel_webapp_Solver extends $c_O {
   getHint__s_util_Random__T(random) {
     let hint;
     if ((this.LFermiPicoBagel_webapp_Solver__f_candidates.length__I() <= 1000)) {
-      hint = $p_LFermiPicoBagel_webapp_Solver__generateHint__T(this)
+      hint = $m_LFermiPicoBagel_webapp_Solver$().FermiPicoBagel$webapp$Solver$$generateHint__sci_List__T(this.LFermiPicoBagel_webapp_Solver__f_candidates)
     } else {
       const this$1 = this.LFermiPicoBagel_webapp_Solver__f_candidates;
       const n = this.LFermiPicoBagel_webapp_Solver__f_candidates.length__I();
@@ -1202,7 +962,7 @@ class $c_LFermiPicoBagel_webapp_Solver extends $c_O {
     const this$2 = this.LFermiPicoBagel_webapp_Solver__f_candidates;
     const f = ((this$1, guess$1, formattedResponse$1) => ((candidate$2) => {
       const candidate = $as_T(candidate$2);
-      return $p_LFermiPicoBagel_webapp_Solver__responseMatch__T__T__Z(this$1, $p_LFermiPicoBagel_webapp_Solver__calcResponse__T__T__T(this$1, candidate, guess$1), formattedResponse$1)
+      return $m_LFermiPicoBagel_webapp_Solver$().FermiPicoBagel$webapp$Solver$$responseMatch__T__T__Z($m_LFermiPicoBagel_webapp_Solver$().FermiPicoBagel$webapp$Solver$$calcResponse__T__T__T(candidate, guess$1), formattedResponse$1)
     }))(this, guess, formattedResponse);
     let l = this$2;
     let result;
@@ -1278,12 +1038,374 @@ const $d_LFermiPicoBagel_webapp_Solver = new $TypeData().initClass({
   O: 1
 });
 $c_LFermiPicoBagel_webapp_Solver.prototype.$classData = $d_LFermiPicoBagel_webapp_Solver;
+const $p_LFermiPicoBagel_webapp_Solver$__generateLowerDiagonalMatrix__sci_List__sci_List = (function($thiz, candidates) {
+  let rest = candidates;
+  let h = null;
+  let t = null;
+  while ((rest !== $m_sci_Nil$())) {
+    const arg1 = rest.head__O();
+    const c1 = $as_T(arg1);
+    const f = ((this$1, c1$1) => ((x$7$2) => {
+      const x$7 = $as_T(x$7$2);
+      return $m_sc_StringOps$().$less$extension__T__T__Z(x$7, c1$1)
+    }))($thiz, c1);
+    let l = candidates;
+    let result;
+    block: {
+      while (true) {
+        if (l.isEmpty__Z()) {
+          result = $m_sci_Nil$();
+          break
+        } else {
+          const h$1 = l.head__O();
+          const t$1 = $as_sci_List(l.tail__O());
+          if (($uZ(f(h$1)) === false)) {
+            l = t$1;
+            continue
+          };
+          const start = l;
+          let remaining = t$1;
+          while (true) {
+            if (remaining.isEmpty__Z()) {
+              result = start;
+              break block
+            } else {
+              const x = remaining.head__O();
+              if (($uZ(f(x)) !== false)) {
+                remaining = $as_sci_List(remaining.tail__O());
+                continue
+              };
+              const firstMiss = remaining;
+              const newHead = new $c_sci_$colon$colon(start.head__O(), $m_sci_Nil$());
+              let toProcess = $as_sci_List(start.tail__O());
+              let currentLast = newHead;
+              while ((toProcess !== firstMiss)) {
+                const newElem = new $c_sci_$colon$colon(toProcess.head__O(), $m_sci_Nil$());
+                currentLast.sci_$colon$colon__f_next = newElem;
+                currentLast = newElem;
+                toProcess = $as_sci_List(toProcess.tail__O())
+              };
+              let next = $as_sci_List(firstMiss.tail__O());
+              let nextToCopy = next;
+              while ((!next.isEmpty__Z())) {
+                const head = next.head__O();
+                if (($uZ(f(head)) !== false)) {
+                  next = $as_sci_List(next.tail__O())
+                } else {
+                  while ((nextToCopy !== next)) {
+                    const newElem$2 = new $c_sci_$colon$colon(nextToCopy.head__O(), $m_sci_Nil$());
+                    currentLast.sci_$colon$colon__f_next = newElem$2;
+                    currentLast = newElem$2;
+                    nextToCopy = $as_sci_List(nextToCopy.tail__O())
+                  };
+                  nextToCopy = $as_sci_List(next.tail__O());
+                  next = $as_sci_List(next.tail__O())
+                }
+              };
+              if ((!nextToCopy.isEmpty__Z())) {
+                currentLast.sci_$colon$colon__f_next = nextToCopy
+              };
+              result = newHead;
+              break block
+            }
+          }
+        }
+      }
+    };
+    const f$1 = ((this$2$1, c1$2) => ((c2$2) => {
+      const c2 = $as_T(c2$2);
+      return new $c_T2(c1$2, c2)
+    }))($thiz, c1);
+    let $$x1;
+    if ((result === $m_sci_Nil$())) {
+      $$x1 = $m_sci_Nil$()
+    } else {
+      const arg1$1 = result.head__O();
+      const h$2 = new $c_sci_$colon$colon(f$1(arg1$1), $m_sci_Nil$());
+      let t$2 = h$2;
+      let rest$1 = $as_sci_List(result.tail__O());
+      while ((rest$1 !== $m_sci_Nil$())) {
+        const arg1$2 = rest$1.head__O();
+        const nx = new $c_sci_$colon$colon(f$1(arg1$2), $m_sci_Nil$());
+        t$2.sci_$colon$colon__f_next = nx;
+        t$2 = nx;
+        rest$1 = $as_sci_List(rest$1.tail__O())
+      };
+      $$x1 = h$2
+    };
+    const it = $$x1.iterator__sc_Iterator();
+    while (it.hasNext__Z()) {
+      const nx$1 = new $c_sci_$colon$colon(it.next__O(), $m_sci_Nil$());
+      if ((t === null)) {
+        h = nx$1
+      } else {
+        t.sci_$colon$colon__f_next = nx$1
+      };
+      t = nx$1
+    };
+    rest = $as_sci_List(rest.tail__O())
+  };
+  return ((h === null) ? $m_sci_Nil$() : h)
+});
 class $c_LFermiPicoBagel_webapp_Solver$ extends $c_O {
   constructor() {
     super();
     this.LFermiPicoBagel_webapp_Solver$__f_random = null;
     $n_LFermiPicoBagel_webapp_Solver$ = this;
     this.LFermiPicoBagel_webapp_Solver$__f_random = $ct_s_util_Random__(new $c_s_util_Random())
+  };
+  FermiPicoBagel$webapp$Solver$$responseMatch__T__T__Z(r1, r2) {
+    const this$1 = $m_s_Predef$().wrapString__T__sci_WrappedString($as_T(r1.toLowerCase()));
+    const ord = $m_s_math_Ordering$Char$();
+    const x = $f_sc_SeqOps__sorted__s_math_Ordering__O(this$1, ord);
+    const this$2 = $m_s_Predef$().wrapString__T__sci_WrappedString($as_T(r2.toLowerCase()));
+    const ord$1 = $m_s_math_Ordering$Char$();
+    const y = $f_sc_SeqOps__sorted__s_math_Ordering__O(this$2, ord$1);
+    return $m_sr_BoxesRunTime$().equals__O__O__Z(x, y)
+  };
+  FermiPicoBagel$webapp$Solver$$calcResponse__T__T__T(candidate, guess) {
+    const n = $uI(candidate.length);
+    const this$1 = $m_s_Predef$().wrapString__T__sci_WrappedString(candidate);
+    const $$x1 = $as_sc_SeqOps($f_sc_IterableOps__zipWithIndex__O(this$1));
+    const this$2 = $m_s_Predef$().wrapString__T__sci_WrappedString(guess);
+    const f = $as_sc_SeqOps($$x1.intersect__sc_Seq__O($as_sc_Seq($f_sc_IterableOps__zipWithIndex__O(this$2)))).length__I();
+    const this$3 = $m_s_Predef$().wrapString__T__sci_WrappedString(candidate);
+    const that = $m_s_Predef$().wrapString__T__sci_WrappedString(guess);
+    const this$4 = $as_sci_WrappedString($f_sc_SeqOps__intersect__sc_Seq__O(this$3, that));
+    const this$5 = this$4.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self;
+    const p = (($uI(this$5.length) - f) | 0);
+    const b = ((((n - f) | 0) - p) | 0);
+    const isEmpty = (f < 1);
+    let scala$collection$immutable$Range$$numRangeElements;
+    if (isEmpty) {
+      scala$collection$immutable$Range$$numRangeElements = 0
+    } else {
+      const hi = (f >> 31);
+      const lo = (((-1) + f) | 0);
+      const hi$1 = ((lo !== (-1)) ? hi : (((-1) + hi) | 0));
+      const lo$1 = ((1 + lo) | 0);
+      const hi$2 = ((lo$1 === 0) ? ((1 + hi$1) | 0) : hi$1);
+      scala$collection$immutable$Range$$numRangeElements = (((hi$2 === 0) ? (((-2147483648) ^ lo$1) > (-1)) : (hi$2 > 0)) ? (-1) : lo$1)
+    };
+    if ((scala$collection$immutable$Range$$numRangeElements < 0)) {
+      $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__E(1, f, 1, true)
+    };
+    const b$1 = $m_sci_IndexedSeq$().newBuilder__scm_Builder();
+    const it = new $c_sci_RangeIterator(1, 1, f, isEmpty);
+    while (it.sci_RangeIterator__f__hasNext) {
+      it.next__I();
+      const elem = 70;
+      b$1.addOne__O__scm_Growable($bC(elem))
+    };
+    const this$12 = $as_sci_IndexedSeq(b$1.result__O());
+    const $$x3 = $f_sc_IterableOnceOps__mkString__T__T__T__T(this$12, "", "", "");
+    const isEmpty$1 = (p < 1);
+    let scala$collection$immutable$Range$$numRangeElements$1;
+    if (isEmpty$1) {
+      scala$collection$immutable$Range$$numRangeElements$1 = 0
+    } else {
+      const hi$3 = (p >> 31);
+      const lo$2 = (((-1) + p) | 0);
+      const hi$4 = ((lo$2 !== (-1)) ? hi$3 : (((-1) + hi$3) | 0));
+      const lo$3 = ((1 + lo$2) | 0);
+      const hi$5 = ((lo$3 === 0) ? ((1 + hi$4) | 0) : hi$4);
+      scala$collection$immutable$Range$$numRangeElements$1 = (((hi$5 === 0) ? (((-2147483648) ^ lo$3) > (-1)) : (hi$5 > 0)) ? (-1) : lo$3)
+    };
+    if ((scala$collection$immutable$Range$$numRangeElements$1 < 0)) {
+      $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__E(1, p, 1, true)
+    };
+    const b$2 = $m_sci_IndexedSeq$().newBuilder__scm_Builder();
+    const it$1 = new $c_sci_RangeIterator(1, 1, p, isEmpty$1);
+    while (it$1.sci_RangeIterator__f__hasNext) {
+      it$1.next__I();
+      const elem$1 = 80;
+      b$2.addOne__O__scm_Growable($bC(elem$1))
+    };
+    const this$19 = $as_sci_IndexedSeq(b$2.result__O());
+    const $$x2 = $f_sc_IterableOnceOps__mkString__T__T__T__T(this$19, "", "", "");
+    const isEmpty$2 = (b < 1);
+    let scala$collection$immutable$Range$$numRangeElements$2;
+    if (isEmpty$2) {
+      scala$collection$immutable$Range$$numRangeElements$2 = 0
+    } else {
+      const hi$6 = (b >> 31);
+      const lo$4 = (((-1) + b) | 0);
+      const hi$7 = ((lo$4 !== (-1)) ? hi$6 : (((-1) + hi$6) | 0));
+      const lo$5 = ((1 + lo$4) | 0);
+      const hi$8 = ((lo$5 === 0) ? ((1 + hi$7) | 0) : hi$7);
+      scala$collection$immutable$Range$$numRangeElements$2 = (((hi$8 === 0) ? (((-2147483648) ^ lo$5) > (-1)) : (hi$8 > 0)) ? (-1) : lo$5)
+    };
+    if ((scala$collection$immutable$Range$$numRangeElements$2 < 0)) {
+      $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__E(1, b, 1, true)
+    };
+    const b$3 = $m_sci_IndexedSeq$().newBuilder__scm_Builder();
+    const it$2 = new $c_sci_RangeIterator(1, 1, b, isEmpty$2);
+    while (it$2.sci_RangeIterator__f__hasNext) {
+      it$2.next__I();
+      const elem$2 = 66;
+      b$3.addOne__O__scm_Growable($bC(elem$2))
+    };
+    const this$26 = $as_sci_IndexedSeq(b$3.result__O());
+    return ((("" + $$x3) + $$x2) + $f_sc_IterableOnceOps__mkString__T__T__T__T(this$26, "", "", ""))
+  };
+  FermiPicoBagel$webapp$Solver$$generateHint__sci_List__T(candidates) {
+    const lowerDiagonal = $p_LFermiPicoBagel_webapp_Solver$__generateLowerDiagonalMatrix__sci_List__sci_List(this, candidates);
+    const f = ((this$1) => ((x0$1$2) => {
+      const x0$1 = $as_T2(x0$1$2);
+      if ((x0$1 !== null)) {
+        const guess = $as_T(x0$1.T2__f__1);
+        const candidate = $as_T(x0$1.T2__f__2);
+        const response = $m_LFermiPicoBagel_webapp_Solver$().FermiPicoBagel$webapp$Solver$$calcResponse__T__T__T(candidate, guess);
+        return new $c_T3(guess, candidate, response)
+      } else {
+        throw new $c_s_MatchError(x0$1)
+      }
+    }))(this);
+    let responseLD;
+    if ((lowerDiagonal === $m_sci_Nil$())) {
+      responseLD = $m_sci_Nil$()
+    } else {
+      const arg1 = lowerDiagonal.head__O();
+      const h = new $c_sci_$colon$colon(f(arg1), $m_sci_Nil$());
+      let t = h;
+      let rest = $as_sci_List(lowerDiagonal.tail__O());
+      while ((rest !== $m_sci_Nil$())) {
+        const arg1$1 = rest.head__O();
+        const nx = new $c_sci_$colon$colon(f(arg1$1), $m_sci_Nil$());
+        t.sci_$colon$colon__f_next = nx;
+        t = nx;
+        rest = $as_sci_List(rest.tail__O())
+      };
+      responseLD = h
+    };
+    const f$1 = ((this$2) => ((x0$2$2) => {
+      const x0$2 = $as_T3(x0$2$2);
+      if ((x0$2 !== null)) {
+        const guess$1 = $as_T(x0$2.T3__f__1);
+        const candidate$1 = $as_T(x0$2.T3__f__2);
+        const response$1 = $as_T(x0$2.T3__f__3);
+        return new $c_T3(candidate$1, guess$1, response$1)
+      } else {
+        throw new $c_s_MatchError(x0$2)
+      }
+    }))(this);
+    let responseUD;
+    if ((responseLD === $m_sci_Nil$())) {
+      responseUD = $m_sci_Nil$()
+    } else {
+      const arg1$2 = responseLD.head__O();
+      const h$1 = new $c_sci_$colon$colon(f$1(arg1$2), $m_sci_Nil$());
+      let t$1 = h$1;
+      let rest$1 = $as_sci_List(responseLD.tail__O());
+      while ((rest$1 !== $m_sci_Nil$())) {
+        const arg1$3 = rest$1.head__O();
+        const nx$1 = new $c_sci_$colon$colon(f$1(arg1$3), $m_sci_Nil$());
+        t$1.sci_$colon$colon__f_next = nx$1;
+        t$1 = nx$1;
+        rest$1 = $as_sci_List(rest$1.tail__O())
+      };
+      responseUD = h$1
+    };
+    const f$2 = ((this$3) => ((c$2) => {
+      const c = $as_T(c$2);
+      return new $c_T3(c, c, "FFFF")
+    }))(this);
+    let diagonal;
+    if ((candidates === $m_sci_Nil$())) {
+      diagonal = $m_sci_Nil$()
+    } else {
+      const arg1$4 = candidates.head__O();
+      const h$2 = new $c_sci_$colon$colon(f$2(arg1$4), $m_sci_Nil$());
+      let t$2 = h$2;
+      let rest$2 = $as_sci_List(candidates.tail__O());
+      while ((rest$2 !== $m_sci_Nil$())) {
+        const arg1$5 = rest$2.head__O();
+        const nx$2 = new $c_sci_$colon$colon(f$2(arg1$5), $m_sci_Nil$());
+        t$2.sci_$colon$colon__f_next = nx$2;
+        t$2 = nx$2;
+        rest$2 = $as_sci_List(rest$2.tail__O())
+      };
+      diagonal = h$2
+    };
+    const this$4 = responseLD.appendedAll__sc_IterableOnce__sci_List(responseUD);
+    const allResponse = this$4.appendedAll__sc_IterableOnce__sci_List(diagonal);
+    const m = $as_scm_Map($m_scm_Map$().empty__O());
+    const it = allResponse.iterator__sc_Iterator();
+    while (it.hasNext__Z()) {
+      const elem = it.next__O();
+      const x$8 = $as_T3(elem);
+      const key = $as_T(x$8.T3__f__1);
+      const bldr = $as_scm_Builder(m.getOrElseUpdate__O__F0__O(key, new $c_sjsr_AnonFunction0(((this$5) => (() => this$5.newSpecificBuilder__scm_Builder()))(allResponse))));
+      bldr.addOne__O__scm_Growable(elem)
+    };
+    const this$6 = $m_sci_HashMap$();
+    let result = this$6.sci_HashMap$__f_EmptyMap;
+    const mapIt = m.iterator__sc_Iterator();
+    while (mapIt.hasNext__Z()) {
+      const x1 = $as_T2(mapIt.next__O());
+      if ((x1 === null)) {
+        throw new $c_s_MatchError(x1)
+      };
+      const k = x1.T2__f__1;
+      const v = $as_scm_Builder(x1.T2__f__2);
+      result = result.updated__O__O__sci_HashMap(k, v.result__O())
+    };
+    const this$7 = result;
+    $m_sci_HashMap$();
+    const b = new $c_sci_HashMapBuilder();
+    const it$1 = this$7.iterator__sc_Iterator();
+    while (it$1.hasNext__Z()) {
+      const arg1$6 = it$1.next__O();
+      const x0$3 = $as_T2(arg1$6);
+      if ((x0$3 === null)) {
+        throw new $c_s_MatchError(x0$3)
+      };
+      const guess$2 = $as_T(x0$3.T2__f__1);
+      const responseGroup = $as_sci_List(x0$3.T2__f__2);
+      const m$1 = $as_scm_Map($m_scm_Map$().empty__O());
+      const it$2 = responseGroup.iterator__sc_Iterator();
+      while (it$2.hasNext__Z()) {
+        const elem$1 = it$2.next__O();
+        const x$9 = $as_T3(elem$1);
+        const key$1 = $as_T(x$9.T3__f__3);
+        const bldr$1 = $as_scm_Builder(m$1.getOrElseUpdate__O__F0__O(key$1, new $c_sjsr_AnonFunction0(((this$9) => (() => this$9.newSpecificBuilder__scm_Builder()))(responseGroup))));
+        bldr$1.addOne__O__scm_Growable(elem$1)
+      };
+      const this$10 = $m_sci_HashMap$();
+      let result$1 = this$10.sci_HashMap$__f_EmptyMap;
+      const mapIt$1 = m$1.iterator__sc_Iterator();
+      while (mapIt$1.hasNext__Z()) {
+        const x1$1 = $as_T2(mapIt$1.next__O());
+        if ((x1$1 === null)) {
+          throw new $c_s_MatchError(x1$1)
+        };
+        const k$1 = x1$1.T2__f__1;
+        const v$1 = $as_scm_Builder(x1$1.T2__f__2);
+        result$1 = result$1.updated__O__O__sci_HashMap(k$1, v$1.result__O())
+      };
+      const this$12 = result$1;
+      const f$3 = new $c_sjsr_AnonFunction1(((this$2$1) => ((x$10$2) => {
+        const x$10 = $as_T2(x$10$2);
+        const this$11 = $as_sc_SeqOps(x$10.T2__f__2);
+        return this$11.length__I()
+      }))(this));
+      const cmp = $m_s_math_Ordering$Int$();
+      const worstCase = $as_T2($f_sc_IterableOnceOps__maxBy__F1__s_math_Ordering__O(this$12, f$3, cmp));
+      const this$13 = $as_sc_SeqOps(worstCase.T2__f__2);
+      const _2 = this$13.length__I();
+      $p_sci_HashMapBuilder__ensureUnaliased__V(b);
+      const h$3 = $m_sr_Statics$().anyHash__O__I(guess$2);
+      const im = $m_sc_Hashing$().improve__I__I(h$3);
+      b.update__sci_MapNode__O__O__I__I__I__V(b.sci_HashMapBuilder__f_scala$collection$immutable$HashMapBuilder$$rootNode, guess$2, _2, h$3, im, 0)
+    };
+    const this$14 = b.result__sci_HashMap();
+    const f$4 = new $c_sjsr_AnonFunction1(((this$6$1) => ((x$11$2) => {
+      const x$11 = $as_T2(x$11$2);
+      return $uI(x$11.T2__f__2)
+    }))(this));
+    const cmp$1 = $m_s_math_Ordering$Int$();
+    const bestOfWorst = $as_T2($f_sc_IterableOnceOps__minBy__F1__s_math_Ordering__O(this$14, f$4, cmp$1));
+    return $as_T(bestOfWorst.T2__f__1)
   };
 }
 const $d_LFermiPicoBagel_webapp_Solver$ = new $TypeData().initClass({
@@ -2770,6 +2892,25 @@ const $d_sc_LinearSeqIterator$LazyCell = new $TypeData().initClass({
   O: 1
 });
 $c_sc_LinearSeqIterator$LazyCell.prototype.$classData = $d_sc_LinearSeqIterator$LazyCell;
+class $c_sc_StringOps$ extends $c_O {
+  $less$extension__T__T__Z(this$, that) {
+    return (((this$ === that) ? 0 : ($uZ((this$ < that)) ? (-1) : 1)) < 0)
+  };
+}
+const $d_sc_StringOps$ = new $TypeData().initClass({
+  sc_StringOps$: 0
+}, false, "scala.collection.StringOps$", {
+  sc_StringOps$: 1,
+  O: 1
+});
+$c_sc_StringOps$.prototype.$classData = $d_sc_StringOps$;
+let $n_sc_StringOps$ = (void 0);
+function $m_sc_StringOps$() {
+  if ((!$n_sc_StringOps$)) {
+    $n_sc_StringOps$ = new $c_sc_StringOps$()
+  };
+  return $n_sc_StringOps$
+}
 const $p_sci_ChampBaseIterator__initNodes__V = (function($thiz) {
   if (($thiz.sci_ChampBaseIterator__f_nodeCursorsAndLengths === null)) {
     $thiz.sci_ChampBaseIterator__f_nodeCursorsAndLengths = $newArrayObject($d_I.getArrayOf(), [($m_sci_Node$().sci_Node$__f_MaxDepth << 1)]);
@@ -13133,6 +13274,12 @@ const $f_sc_MapOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (
   const this$3 = new $c_sc_Iterator$$anon$9(this$2, f);
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this$3, sb, start, sep, end)
 });
+const $f_sc_StrictOptimizedSeqOps__appendedAll__sc_IterableOnce__O = (function($thiz, suffix) {
+  const b = $thiz.iterableFactory__sc_SeqFactory().newBuilder__scm_Builder();
+  b.addAll__sc_IterableOnce__scm_Growable($thiz);
+  b.addAll__sc_IterableOnce__scm_Growable(suffix);
+  return b.result__O()
+});
 const $f_sc_StrictOptimizedSeqOps__intersect__sc_Seq__O = (function($thiz, that) {
   const occ = $f_sc_SeqOps__occCounts__sc_Seq__scm_Map($thiz, that);
   const b = $thiz.newSpecificBuilder__scm_Builder();
@@ -18509,6 +18656,9 @@ class $c_sjsr_WrappedVarArgs extends $c_O {
   toArray__s_reflect_ClassTag__O(evidence$2) {
     return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_sjsr_WrappedVarArgs$()
+  };
   length__I() {
     return $uI(this.sjsr_WrappedVarArgs__f_scala$scalajs$runtime$WrappedVarArgs$$array.length)
   };
@@ -18972,6 +19122,9 @@ class $c_sci_Range extends $c_sci_AbstractSeq {
   canEqual__O__Z(that) {
     return $f_sci_IndexedSeq__canEqual__O__Z(this, that)
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_sci_IndexedSeq$()
+  };
   stringPrefix__T() {
     return "IndexedSeq"
   };
@@ -19285,6 +19438,9 @@ class $c_sci_ArraySeq extends $c_sci_AbstractSeq {
   knownSize__I() {
     return this.length__I()
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_sci_ArraySeq$().sci_ArraySeq$__f_untagged
+  };
   map__F1__sci_ArraySeq(f) {
     return $as_sci_ArraySeq($m_sci_ArraySeq$().sci_ArraySeq$__f_untagged.tabulate__I__F1__O(this.length__I(), new $c_sjsr_AnonFunction1(((this$1, f$1) => ((i$2) => {
       const i = $uI(i$2);
@@ -19484,6 +19640,9 @@ class $c_scm_ArraySeq extends $c_scm_AbstractSeq {
   };
   knownSize__I() {
     return this.length__I()
+  };
+  iterableFactory__sc_SeqFactory() {
+    return $m_scm_ArraySeq$().scm_ArraySeq$__f_untagged
   };
   fromSpecific__sc_IterableOnce__scm_ArraySeq(coll) {
     const evidence$1 = this.elemTag__s_reflect_ClassTag();
@@ -20585,8 +20744,29 @@ class $c_sci_List extends $c_sci_AbstractSeq {
   indexWhere__F1__I__I(p, from) {
     return $f_sc_LinearSeqOps__indexWhere__F1__I__I(this, p, from)
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_sci_List$()
+  };
+  $colon$colon$colon__sci_List__sci_List(prefix) {
+    if (this.isEmpty__Z()) {
+      return prefix
+    } else if (prefix.isEmpty__Z()) {
+      return this
+    } else {
+      const this$1 = new $c_scm_ListBuffer();
+      return this$1.addAll__sc_IterableOnce__scm_ListBuffer(prefix).prependToList__sci_List__sci_List(this)
+    }
+  };
   isEmpty__Z() {
     return (this === $m_sci_Nil$())
+  };
+  appendedAll__sc_IterableOnce__sci_List(suffix) {
+    if ((suffix instanceof $c_sci_List)) {
+      const x2 = $as_sci_List(suffix);
+      return x2.$colon$colon$colon__sci_List__sci_List(this)
+    } else {
+      return $as_sci_List($f_sc_StrictOptimizedSeqOps__appendedAll__sc_IterableOnce__O(this, suffix))
+    }
   };
   map__F1__sci_List(f) {
     if ((this === $m_sci_Nil$())) {
@@ -20915,6 +21095,9 @@ class $c_sci_Vector extends $c_sci_AbstractSeq {
   };
   display5_$eq__AAAAAAO__V(x$1) {
     this.sci_Vector__f_display5 = x$1
+  };
+  iterableFactory__sc_SeqFactory() {
+    return $m_sci_Vector$()
   };
   length__I() {
     return ((this.sci_Vector__f_endIndex - this.sci_Vector__f_startIndex) | 0)
@@ -22659,6 +22842,9 @@ class $c_scm_ListBuffer extends $c_scm_AbstractBuffer {
   iterator__sc_Iterator() {
     return this.scm_ListBuffer__f_first.iterator__sc_Iterator()
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_scm_ListBuffer$()
+  };
   apply__I__O(i) {
     const this$1 = this.scm_ListBuffer__f_first;
     return $f_sc_LinearSeqOps__apply__I__O(this$1, i)
@@ -22675,6 +22861,15 @@ class $c_scm_ListBuffer extends $c_scm_AbstractBuffer {
   toList__sci_List() {
     this.scm_ListBuffer__f_aliased = (!this.isEmpty__Z());
     return this.scm_ListBuffer__f_first
+  };
+  prependToList__sci_List__sci_List(xs) {
+    if (this.isEmpty__Z()) {
+      return xs
+    } else {
+      $p_scm_ListBuffer__ensureUnaliased__V(this);
+      this.scm_ListBuffer__f_last0.sci_$colon$colon__f_next = xs;
+      return this.toList__sci_List()
+    }
   };
   addOne__O__scm_ListBuffer(elem) {
     $p_scm_ListBuffer__ensureUnaliased__V(this);
@@ -22849,6 +23044,9 @@ class $c_scm_ArrayBuffer extends $c_scm_AbstractBuffer {
   length__I() {
     return this.scm_ArrayBuffer__f_size0
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_scm_ArrayBuffer$()
+  };
   addOne__O__scm_ArrayBuffer(elem) {
     const i = this.scm_ArrayBuffer__f_size0;
     this.ensureSize__I__V(((1 + this.scm_ArrayBuffer__f_size0) | 0));
@@ -22991,6 +23189,9 @@ class $c_sjs_js_WrappedArray extends $c_scm_AbstractBuffer {
   unzip__F1__T2(asPair) {
     return $f_sc_StrictOptimizedIterableOps__unzip__F1__T2(this, asPair)
   };
+  iterableFactory__sc_SeqFactory() {
+    return $m_sjs_js_WrappedArray$()
+  };
   apply__I__O(index) {
     return this.sjs_js_WrappedArray__f_scala$scalajs$js$WrappedArray$$array[index]
   };
@@ -23081,5 +23282,6 @@ NDigitKeyUp = (function(arg) {
   const prep0 = arg;
   $m_LFermiPicoBagel_webapp_Dom$().NDigitKeyUp__Lorg_scalajs_dom_raw_HTMLInputElement__V(prep0)
 });
+$s_LFermiPicoBagel_webapp_App__main__AT__V($makeNativeArrayWrapper($d_T.getArrayOf(), []));
 }).call(this);
 //# sourceMappingURL=fermipicobagel-fastopt.js.map
